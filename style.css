@@ -2814,45 +2814,67 @@ a:focus-visible {
 }
 
 
-/* MOBILE MISSING PERSON SLIDER */
+/* =========================================
+   MISSING PERSONS HORIZONTAL CAROUSEL
+========================================= */
+
+.missing-carousel {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+}
+
+.missing-carousel .missing-grid {
+    display: flex !important;
+    flex-direction: row;
+    flex-wrap: nowrap !important;
+    justify-content: flex-start;
+
+    width: 100%;
+    max-width: none;
+
+    gap: 17px;
+    margin: 0;
+    padding: 2px 0 8px;
+
+    transition: transform 0.6s ease-in-out;
+    will-change: transform;
+}
+
+/* LAPTOP: 3 CARDS */
+
+.missing-carousel .missing-card {
+    flex: 0 0 calc((100% - 34px) / 3);
+    width: calc((100% - 34px) / 3);
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+/* TABLET: 2 CARDS */
+
+@media (max-width: 768px) and (min-width: 601px) {
+
+    .missing-carousel .missing-card {
+        flex: 0 0 calc((100% - 17px) / 2);
+        width: calc((100% - 17px) / 2);
+    }
+
+}
+
+/* MOBILE: 1 CARD */
 
 @media (max-width: 600px) {
 
-    .missing-section .missing-grid {
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: nowrap !important;
-
-        gap: 0 !important;
-
-        width: 100% !important;
-        max-width: 100% !important;
-
-        overflow-x: auto !important;
-        overflow-y: hidden !important;
-
-        scroll-snap-type: x mandatory;
-        scroll-behavior: smooth;
-
-        scrollbar-width: none;
+    .missing-carousel .missing-grid {
+        gap: 0;
     }
 
-    .missing-section .missing-grid::-webkit-scrollbar {
-        display: none;
-    }
-
-    .missing-section .missing-card {
-        display: flex !important;
-
-        flex: 0 0 100% !important;
-
-        width: 100% !important;
-        min-width: 100% !important;
-        max-width: 100% !important;
-
-        scroll-snap-align: start;
-
-        box-sizing: border-box;
+    .missing-carousel .missing-card {
+        flex: 0 0 100%;
+        width: 100%;
+        min-width: 100%;
     }
 
 }

@@ -389,60 +389,171 @@ if (stopLocationBtn) {
 });
 
 
+/* =========================================
+   MISSING PERSON AUTO SLIDER
+========================================= */
+
 document.addEventListener("DOMContentLoaded", function () {
 
-    const grid = document.querySelector(
-        ".missing-section .missing-grid"
+    const track = document.getElementById("missingTrack");
+
+    if (!track) return;
+
+    const carousel = track.closest(".missing-carousel");
+
+    let cards = Array.from(
+        track.querySelectorAll(".missing-card")
     );
 
-    if (!grid) return;
+    if (!carousel || cards.length <= 1) return;
 
-    const cards = grid.querySelectorAll(".missing-card");
+    let currentIndex = 0;
+    let sliderTimer = null;
 
-    if (cards.length <= 1) return;
+    let touchStartX = 0;
+    let touchEndX = 0;
 
-    let index = 0;
-    let sliderTimer;
+    // RESPONSIVE VISIBLE CARDS
+    function getVisibleCards() {
 
-    function stopSlider() {
-        clearInterval(sliderTimer);
+        if (window.innerWidth <= 600) return 1;
+
+        if (window.innerWidth <= 768) return 2;
+
+        return 3;
     }
 
+    // CARD WIDTH + GAP
+    function getStep() {
+
+        if (!cards.length) return 0;
+
+        const cardWidth = cards[0].getBoundingClientRect().width;
+
+        const gap = parseFloat(
+            getComputedStyle(track).gap
+        ) || 0;
+
+        return cardWidth + gap;
+    }
+
+    // UPDATE POSITION
+    function updateSlider() {
+
+        const position = currentIndex * getStep();
+
+        track.style.transform =
+            `translate3d(-${position}px, 0, 0)`;
+    }
+
+    // NEXT CARD
+    function nextSlide() {
+
+        const maxIndex = cards.length - getVisibleCards();
+
+        if (maxIndex <= 0) return;
+
+        currentIndex++;
+
+        if (currentIndex > maxIndex) {
+            currentIndex = 0;
+        }
+
+        updateSlider();
+    }
+
+    // PREVIOUS CARD
+    function previousSlide() {
+
+        const maxIndex = cards.length - getVisibleCards();
+
+        if (maxIndex <= 0) return;
+
+        currentIndex--;
+
+        if (currentIndex < 0) {
+            currentIndex = maxIndex;
+        }
+
+        updateSlider();
+    }
+
+    // STOP AUTO SLIDE
+    function stopSlider() {
+
+        clearInterval(sliderTimer);
+
+    }
+
+    // START AUTO SLIDE
     function startSlider() {
 
         stopSlider();
 
-        if (window.innerWidth > 600) {
-            index = 0;
-            grid.scrollLeft = 0;
+        const visible = getVisibleCards();
+
+        if (cards.length <= visible) {
+
+            currentIndex = 0;
+            updateSlider();
+
             return;
         }
 
         sliderTimer = setInterval(function () {
 
-            index++;
-
-            if (index >= cards.length) {
-                index = 0;
-            }
-
-            grid.scrollTo({
-                left: index * grid.clientWidth,
-                behavior: "smooth"
-            });
+            nextSlide();
 
         }, 3000);
     }
 
-    grid.addEventListener("touchstart", stopSlider, {
-        passive: true
-    });
+    // MOBILE SWIPE
+    carousel.addEventListener("touchstart", function (event) {
 
-    grid.addEventListener("touchend", function () {
-        startSlider();
+        touchStartX = event.touches[0].clientX;
+
+        stopSlider();
+
     }, { passive: true });
 
-    window.addEventListener("resize", startSlider);
+    carousel.addEventListener("touchend", function (event) {
+
+        touchEndX = event.changedTouches[0].clientX;
+
+        const difference = touchStartX - touchEndX;
+
+        if (Math.abs(difference) > 40) {
+
+            if (difference > 0) {
+                nextSlide();
+            } else {
+                previousSlide();
+            }
+
+        }
+
+        startSlider();
+
+    }, { passive: true });
+
+    // PAUSE ON HOVER
+    carousel.addEventListener("mouseenter", stopSlider);
+
+    carousel.addEventListener("mouseleave", startSlider);
+
+    // RESIZE
+    window.addEventListener("resize", function () {
+
+        currentIndex = 0;
+
+        updateSlider();
+
+        startSlider();
+
+    });
+
+    // INITIALIZE
+    updateSlider();
 
     startSlider();
 

@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SafeHer | Women's Safety & Emergency Support</title>
+
+    <meta name="description" content="SafeHer empowers women through safety awareness, emergency support and community assistance.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+     <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <header class="header">
+        <nav class="navbar container">
+
+            <a href="#home" class="logo">
+                <span class="logo-icon">
+                    <i class="fa-solid fa-shield-heart"></i>
+                </span>
+                Safe<span>Her</span>
+            </a>
+
+            <div class="nav-menu" id="navMenu">
+
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#features" class="nav-link">Safety Features</a>
+                <a href="#location" class="nav-link">Location</a>
+                <a href="#missing" class="nav-link">Missing Persons</a>
+                <a href="#about" class="nav-link">About</a>
+                 <a href="#community" class="nav-link">Community</a>
+
+                <a href="#" class="mobile-login">Login / Register</a>
+
+            </div>
+
+            <div class="nav-actions">
+
+                <a href="#" class="login-btn">Login</a>
+
+                <a href="#" class="register-btn">Get Volunteer</a>
+
+               <button
+    class="menu-toggle"
+    id="menuToggle"
+    aria-label="Open navigation menu"
+    aria-expanded="false"
+>
+    <i class="fa-solid fa-ellipsis-vertical"></i>
+</button>
+
+            </div>
+
+        </nav>
+    </header>
+
+
+    <main>
+
+        <!-- HERO SECTION -->
+        <section class="hero section" id="home">
+
+            <div class="container hero-container">
+
+                <div class="hero-content">
+
+                    <span class="section-label">
+                        <i class="fa-solid fa-heart"></i>
+                        WOMEN'S SAFETY & SUPPORT
+                    </span>
+
+                    <h1>
+                        Your Safety,
+                        <span>Your Voice,</span>
+                        Your Power.
+                    </h1>
+
+                    <p>
+                        A safer world starts with a stronger voice.
+                        SafeHer empowers women with emergency support,
+                        safety resources and a community that stands together.
+                    </p>
+
+                    <div class="hero-buttons">
+
+                        <a href="#location" class="primary-btn">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            Get Emergency Help
+                        </a>
+
+                        <a href="register-btn" class="secondary-btn">
+                             Get Volunteer
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+
+                    </div>
+
+                    <div class="hero-trust">
+                        <i class="fa-solid fa-heart-circle-check"></i>
+                        <span>Your safety matters. Your voice matters.</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+<!-- SAFETY FEATURES -->
+<section class="features-section section" id="features">
+    <div class="container">
+
+        <div class="section-heading">
+            <span class="section-label">OUR SERVICES</span>
+            <h2>Your Safety, Our Priority</h2>
+            <p>Essential safety tools designed to support, protect and empower women.</p>
+        </div>
+
+        <!-- ONE ANIMATED BORDER BOX -->
+        <div class="features-box">
+            <div class="features-box-inner">
+
+                <div class="features-grid">
+
+                    <article class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-hand"></i>
+                        </div>
+                        <h3>Harassment Report</h3>
+                        <p>Report harassment and share safety concerns securely.</p>
+                        <a href="#">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-phone-volume"></i>
+                        </div>
+                        <h3>Emergency Support</h3>
+                        <p>Access emergency guidance and important contacts.</p>
+                        <a href="#location">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <h3>Trusted Contacts</h3>
+                        <p>Build your personal circle of emergency support.</p>
+                        <a href="#">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-bullhorn"></i>
+                        </div>
+                        <h3>Public Awareness</h3>
+                        <p>Share awareness posts and helpful safety information.</p>
+                        <a href="#community">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <h3>Location Support</h3>
+                        <p>Detect your current location with your permission.</p>
+                        <a href="#location">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-book-open"></i>
+                        </div>
+                        <h3>Safety Resources</h3>
+                        <p>Explore emergency guidance and safety education.</p>
+                        <a href="#">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                    </article>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- LIVE LOCATION MAP -->
+<section class="location-section section" id="location">
+    <div class="container">
+
+        <div class="section-heading">
+            <span class="section-label">LIVE LOCATION SUPPORT</span>
+            <h2>Your Location on the Map</h2>
+            <p>Allow location access to see your current position on the map.</p>
+        </div>
+
+        <div class="location-panel">
+
+            <div class="location-info">
+                <div class="location-icon">
+                    <i class="fa-solid fa-location-crosshairs"></i>
+                </div>
+
+                <div>
+                    <h3>Live Location</h3>
+                    <p id="locationStatus">
+                        Press the button to detect your current location.
+                    </p>
+                </div>
+            </div>
+
+            <button class="location-btn" id="getLocationBtn">
+                <i class="fa-solid fa-crosshairs"></i>
+                Detect My Location
+            </button>
+
+            <div class="location-map" id="locationMap"></div>
+
+            <div class="location-result" id="locationResult">
+                <span id="coordinates">Your coordinates will appear here.</span>
+            </div>
+
+           <a href="tel:999" class="emergency-call">
+    Emergency Call 999
+</a>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- MISSING PERSONS SECTION -->
+<section class="missing-section section" id="missing">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span class="section-label">COMMUNITY ALERT</span>
+
+            <h2>Missing Persons</h2>
+
+            <p>
+                Help bring missing people home by sharing verified notices.
+            </p>
+
+        </div>
+
+
+        <div class="missing-grid">
+
+            <!-- PERSON 01 -->
+            <article class="missing-card">
+
+                <div class="missing-photo">
+                    <span class="missing-status">
+                        <i class="fa-solid fa-circle-check"></i>
+                        Verified
+                    </span>
+                </div>
+
+                <div class="missing-details">
+
+                    <h3>Person Name</h3>
+
+                    <p><i class="fa-solid fa-user"></i> Age: 18 Years</p>
+
+                    <p><i class="fa-solid fa-location-dot"></i> Last Seen: Chattogram</p>
+
+                    <p><i class="fa-regular fa-calendar"></i> Missing Since: 01 Nov 2026</p>
+
+                    <a href="#" class="missing-view">
+                        View Details
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- PERSON 02 -->
+            <article class="missing-card">
+
+                <div class="missing-photo">
+                    <span class="missing-status">
+                        <i class="fa-solid fa-circle-check"></i>
+                        Verified
+                    </span>
+                </div>
+
+                <div class="missing-details">
+
+                    <h3>Person Name</h3>
+
+                    <p><i class="fa-solid fa-user"></i> Age: 22 Years</p>
+
+                    <p><i class="fa-solid fa-location-dot"></i> Last Seen: Dhaka</p>
+
+                    <p><i class="fa-regular fa-calendar"></i> Missing Since: 02 Nov 2026</p>
+
+                    <a href="#" class="missing-view">
+                        View Details
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- PERSON 03 -->
+            <article class="missing-card">
+
+                <div class="missing-photo">
+                    <span class="missing-status">
+                        <i class="fa-solid fa-circle-check"></i>
+                        Verified
+                    </span>
+                </div>
+
+                <div class="missing-details">
+
+                    <h3>Person Name</h3>
+
+                    <p><i class="fa-solid fa-user"></i> Age: 16 Years</p>
+
+                    <p><i class="fa-solid fa-location-dot"></i> Last Seen: Cox's Bazar</p>
+
+                    <p><i class="fa-regular fa-calendar"></i> Missing Since: 03 Nov 2026</p>
+
+                    <a href="#" class="missing-view">
+                        View Details
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </article>
+
+        </div>
+
+
+        <div class="missing-footer">
+
+            <a href="#" class="secondary-btn">
+                View All Missing Persons
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+        <!-- ABOUT SECTION -->
+        <section class="about-section section" id="about">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span class="section-label">ABOUT US</span>
+
+                    <h2>Get to Know SafeHer</h2>
+
+                    <p>
+                        Our purpose, our mission and our vision.
+                    </p>
+
+                </div>
+
+                <div class="about-story">
+
+                    <div class="story-item">
+
+                        <span class="story-number">01</span>
+
+                        <div class="story-icon">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+
+                        <div class="story-content">
+
+                            <h3>Why SafeHer Exists</h3>
+
+                            <p>
+                                SafeHer aims to create a supportive digital
+                                environment where women can seek help,
+                                access safety resources and raise their voices.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="story-item">
+
+                        <span class="story-number">02</span>
+
+                        <div class="story-icon">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+
+                        <div class="story-content">
+
+                            <h3>Our Mission</h3>
+
+                            <p>
+                                To make emergency assistance, safety
+                                information and reporting tools more accessible.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="story-item">
+
+                        <span class="story-number">03</span>
+
+                        <div class="story-icon">
+                            <i class="fa-solid fa-bullhorn"></i>
+                        </div>
+
+                        <div class="story-content">
+
+                            <h3>Empowering Every Voice</h3>
+
+                            <p>
+                                We encourage awareness, responsible reporting
+                                and community support without fear or judgment.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="story-item">
+
+                        <span class="story-number">04</span>
+
+                        <div class="story-icon">
+                            <i class="fa-solid fa-people-group"></i>
+                        </div>
+
+                        <div class="story-content">
+
+                            <h3>Our Community</h3>
+
+                            <p>
+                                We believe a safer community begins with
+                                awareness, compassion and collective action.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="story-item">
+
+                        <span class="story-number">05</span>
+
+                        <div class="story-icon">
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+
+                        <div class="story-content">
+
+                            <h3>Our Vision</h3>
+
+                            <p>
+                                A society where every woman can live with
+                                dignity, confidence, freedom and security.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- COMMUNITY -->
+        <section class="community-section section" id="community">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span class="section-label">STAND TOGETHER</span>
+
+                    <h2>A Community That Cares</h2>
+
+                    <p>
+                        Awareness and support can make a difference.
+                    </p>
+
+                </div>
+
+                <div class="community-grid">
+
+                    <div class="community-card">
+
+                        <i class="fa-solid fa-comments"></i>
+
+                        <h3>Public Community Posts</h3>
+
+                        <p>
+                            Share awareness, updates and helpful information.
+                        </p>
+
+                        <a href="#">Explore Community</a>
+
+                    </div>
+
+
+                    <div class="community-card">
+
+                        <i class="fa-solid fa-user-group"></i>
+
+                        <h3>Missing Person Updates</h3>
+
+                        <p>
+                            Explore verified public notices and information.
+                        </p>
+
+                        <a href="#missing">View Missing Persons</a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer" id="footer">
+
+        <div class="container">
+
+            <div class="footer-main">
+
+                <div class="footer-brand">
+
+                    <a href="#home" class="logo">
+                        <span class="logo-icon">
+                            <i class="fa-solid fa-shield-heart"></i>
+                        </span>
+                        Safe<span>Her</span>
+                    </a>
+
+                    <p>
+                        Empowering women through safety, awareness,
+                        emergency support and community.
+                    </p>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h3>Quick Links</h3>
+
+                    <a href="#home">Home</a>
+                    <a href="#about">About Us</a>
+                    <a href="#features">Safety Features</a>
+                    <a href="#community">Community</a>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h3>Safety</h3>
+
+                    <a href="#location">Emergency Support</a>
+                    <a href="#">Report Harassment</a>
+                    <a href="#">Safety Resources</a>
+                    <a href="#missing">Missing Persons</a>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h3>Information</h3>
+
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms & Conditions</a>
+                    <a href="#contact">Contact Us</a>
+                    <a href="#">Help Center</a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <p>© 2026 SafeHer. All Rights Reserved.</p>
+
+                <div class="social-links">
+
+                    <a href="#" aria-label="Facebook">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+
+                    <a href="#" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+
+                    <a href="#" aria-label="LinkedIn">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- GLOBAL FIXED SOS -->
+    <div class="floating-sos">
+
+        <button class="sos-button" id="sosButton" aria-label="Emergency SOS">
+
+            <span class="sos-ripple"></span>
+
+            <span class="sos-inner">
+
+                <i class="fa-solid fa-bell"></i>
+
+                <strong>SOS</strong>
+
+            </span>
+
+        </button>
+
+    </div>
+
+    <!-- FLOATING EMERGENCY CALL 999 -->
+<a href="tel:999" class="emergency-float" aria-label="Call Emergency Number 999">
+    <span class="emergency-icon">
+        <i class="fas fa-phone-alt"></i>
+    </span>
+    <span class="emergency-text">
+        <strong>Emergency</strong>
+        <small>CALL 999</small>
+    </span>
+</a>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>

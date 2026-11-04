@@ -2319,3 +2319,32 @@ button:focus-visible, a:focus-visible {
         padding: 7px 10px !important;
     }
 }
+
+/* MOBILE: IMAGE TOP, DETAILS BOTTOM */
+
+@media (max-width: 600px) {
+
+    .missing-card {
+        flex-direction: column !important;
+        height: 250px !important;
+        min-height: 250px !important;
+        max-height: 250px !important;
+    }
+
+    .missing-card .missing-photo {
+        flex: 0 0 125px !important;
+        width: 100% !important;
+        height: 125px !important;
+        min-height: 125px !important;
+        max-height: 125px !important;
+        object-fit: cover;
+        display: block;
+    }
+
+    .missing-card .missing-details {
+        width: 100%;
+        flex: 1;
+        padding: 8px 12px !important;
+        overflow: hidden;
+    }
+}

@@ -3179,3 +3179,147 @@ a:focus-visible {
     }
 
 }
+
+
+/* =================================
+   MOBILE DROPDOWN - FINAL FIX
+================================= */
+
+@media screen and (max-width: 768px) {
+
+    .navbar {
+        position: relative !important;
+    }
+
+    /* Three dot button */
+
+    .menu-toggle {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Dropdown panel */
+
+    .navbar .nav-menu {
+        position: absolute !important;
+
+        top: calc(100% + 10px) !important;
+        left: 0 !important;
+        right: 0 !important;
+
+        width: 100% !important;
+        height: auto !important;
+
+        max-height: 58vh !important;
+        max-height: 58svh !important;
+
+        padding: 15px !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+
+        background: #ffffff !important;
+
+        border: 1px solid #f1dce6 !important;
+        border-radius: 15px !important;
+
+        box-shadow: 0 12px 30px rgba(0,0,0,0.12) !important;
+
+        overflow-y: auto !important;
+
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+
+        transform: translateY(-10px) !important;
+
+        z-index: 99999 !important;
+
+        transition: 0.3s ease !important;
+    }
+
+    /* Open state */
+
+    .navbar .nav-menu.active {
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+
+        transform: translateY(0) !important;
+    }
+
+    /* Links */
+
+    .navbar .nav-menu .nav-link {
+        display: flex !important;
+        align-items: center;
+
+        width: 100% !important;
+        min-height: 43px !important;
+
+        padding: 10px 12px !important;
+
+        border-bottom: 1px solid #f3e8ee !important;
+
+        color: #55444f !important;
+    }
+
+    /* Login and Volunteer */
+
+    .mobile-auth-actions {
+        display: grid !important;
+
+        grid-template-columns: 1fr 1fr !important;
+        gap: 10px !important;
+
+        margin-top: 12px !important;
+    }
+
+    .mobile-login-btn,
+    .mobile-volunteer-btn {
+        display: flex !important;
+
+        justify-content: center;
+        align-items: center;
+
+        min-height: 44px;
+
+        border-radius: 9px;
+
+        font-size: 13px;
+        font-weight: 700;
+
+        text-decoration: none;
+    }
+
+    .mobile-login-btn {
+        background: #fbedf4;
+        color: #a44875;
+    }
+
+    .mobile-volunteer-btn {
+        background: #b64f80;
+        color: #ffffff;
+    }
+
+    /* Footer */
+
+    .nav-menu-footer {
+        display: flex !important;
+
+        justify-content: center;
+        align-items: center;
+        gap: 7px;
+
+        margin-top: 12px;
+        padding-top: 12px;
+
+        border-top: 1px solid #f0e2e9;
+
+        font-size: 11px;
+        color: #927b88;
+    }
+
+}

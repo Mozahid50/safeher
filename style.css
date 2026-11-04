@@ -2880,6 +2880,33 @@ a:focus-visible {
 }
 
 
+@media (max-width: 600px) {
+
+    .missing-slider {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .missing-track {
+        display: flex;
+        gap: 0;
+        transition: transform 0.6s ease-in-out;
+        will-change: transform;
+    }
+
+    .missing-card {
+        flex: 0 0 100%;
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+
+        border: 3px solid transparent !important;
+        border-radius: 16px;
+    }
+}
+
+
 /* =========================================
    MISSING CARD ANIMATED GRADIENT BORDER
 ========================================= */
@@ -2932,5 +2959,35 @@ a:focus-visible {
 @media (prefers-reduced-motion: reduce) {
     .missing-card {
         animation: none;
+    }
+}
+
+.missing-card {
+    position: relative;
+    isolation: isolate;
+
+    background:
+        linear-gradient(#fff, #fff) padding-box,
+        linear-gradient(
+            90deg,
+            #B85C83,
+            #F2A6C7,
+            #8E75C9,
+            #D8A5F0,
+            #B85C83
+        ) border-box !important;
+
+    background-size: 100% 100%, 300% 300% !important;
+
+    animation: missingBorderMove 2s linear infinite !important;
+}
+
+@keyframes missingBorderMove {
+    0% {
+        background-position: 0 0, 0% 50%;
+    }
+
+    100% {
+        background-position: 0 0, 100% 50%;
     }
 }

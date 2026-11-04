@@ -2991,3 +2991,191 @@ a:focus-visible {
         background-position: 0 0, 100% 50%;
     }
 }
+
+
+/* DESKTOP NAVIGATION - KEEP ORIGINAL */
+
+@media (min-width: 769px) {
+
+    .nav-menu {
+        position: static !important;
+        transform: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        max-height: none !important;
+        overflow: visible !important;
+    }
+
+    .nav-menu .nav-link {
+        display: inline-flex;
+    }
+
+    .mobile-auth-actions,
+    .nav-menu-footer {
+        display: none !important;
+    }
+
+    .menu-toggle {
+        display: none !important;
+    }
+
+}
+
+/* MOBILE ONLY */
+
+@media (max-width: 768px) {
+
+    .nav-menu {
+        position: absolute !important;
+        top: calc(100% + 10px);
+        left: 0;
+        right: 0;
+
+        max-height: 58vh;
+        max-height: 58svh;
+
+        overflow-y: auto;
+
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+
+        transform: translateY(-12px);
+
+        display: flex !important;
+        flex-direction: column;
+    }
+
+    .nav-menu.active {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    .mobile-auth-actions {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 12px;
+    }
+
+    .nav-menu-footer {
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        padding: 14px 5px 5px;
+        margin-top: 12px;
+        border-top: 1px solid #f0e2e9;
+    }
+
+}
+
+
+/* =========================================
+   SAFEHER DESKTOP NAVBAR RESTORE
+   MOBILE NAVIGATION WILL REMAIN UNCHANGED
+========================================= */
+
+@media (min-width: 769px) {
+
+    /* Main Navbar */
+
+    .navbar {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 16px !important;
+    }
+
+    /* Logo */
+
+    .navbar .logo {
+        flex-shrink: 0;
+    }
+
+    /* Navigation Links */
+
+    .nav-menu {
+        position: static !important;
+
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        flex: initial !important;
+        width: auto !important;
+        max-height: none !important;
+
+        gap: 23px !important;
+
+        padding: 0 !important;
+        margin: 0 !important;
+
+        background: transparent !important;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+
+        overflow: visible !important;
+
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+
+        transform: none !important;
+    }
+
+    .nav-menu .nav-link {
+        display: inline-flex !important;
+        align-items: center;
+
+        width: auto !important;
+        min-height: unset !important;
+
+        padding: 0 !important;
+        margin: 0 !important;
+
+        background: transparent !important;
+        border: none !important;
+        border-radius: 0 !important;
+
+        white-space: nowrap;
+    }
+
+    /* Desktop Login & Volunteer */
+
+    .nav-actions {
+        display: flex !important;
+
+        align-items: center !important;
+        justify-content: flex-end !important;
+
+        flex-shrink: 0 !important;
+        gap: 9px !important;
+
+        margin: 0 !important;
+    }
+
+    .nav-actions .login-btn,
+    .nav-actions .register-btn {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    /* Hide Mobile Elements */
+
+    .menu-toggle,
+    .mobile-auth-actions,
+    .nav-menu-footer {
+        display: none !important;
+    }
+
+}

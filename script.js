@@ -6,86 +6,94 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     /* =====================================
-       01. MOBILE NAVIGATION
-    ===================================== */
+   SAFEHER MOBILE NAVIGATION
+===================================== */
 
-    const menuToggle = document.getElementById("menuToggle");
-    const navMenu = document.getElementById("navMenu");
+const menuToggle = document.getElementById("menuToggle");
+const navMenu = document.getElementById("navMenu");
 
-    function closeMenu() {
-        if (!menuToggle || !navMenu) return;
+if (menuToggle && navMenu) {
 
-        navMenu.classList.remove("active");
-        menuToggle.classList.remove("active");
-
-        menuToggle.setAttribute("aria-expanded", "false");
-
-        const icon = menuToggle.querySelector("i");
-
-        if (icon) {
-            icon.classList.remove("fa-xmark");
-            icon.classList.add("fa-bars");
-        }
-    }
+    const menuIcon = menuToggle.querySelector("i");
 
     function openMenu() {
-        if (!menuToggle || !navMenu) return;
 
         navMenu.classList.add("active");
         menuToggle.classList.add("active");
 
         menuToggle.setAttribute("aria-expanded", "true");
+        menuToggle.setAttribute("aria-label", "Close navigation menu");
 
-        const icon = menuToggle.querySelector("i");
+        menuIcon.classList.remove("fa-ellipsis-vertical");
+        menuIcon.classList.add("fa-xmark");
 
-        if (icon) {
-            icon.classList.remove("fa-bars");
-            icon.classList.add("fa-xmark");
-        }
     }
 
-    if (menuToggle && navMenu) {
+    function closeMenu() {
+
+        navMenu.classList.remove("active");
+        menuToggle.classList.remove("active");
 
         menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation menu");
 
-        menuToggle.addEventListener("click", (event) => {
-            event.stopPropagation();
-
-            const isOpen = navMenu.classList.contains("active");
-
-            if (isOpen) {
-                closeMenu();
-            } else {
-                openMenu();
-            }
-        });
-
-        // Close menu after clicking navigation link
-        document.querySelectorAll(".nav-link, .mobile-login")
-            .forEach(link => {
-                link.addEventListener("click", closeMenu);
-            });
-
-        // Close menu when clicking outside
-        document.addEventListener("click", (event) => {
-
-            const clickedInsideMenu = navMenu.contains(event.target);
-            const clickedToggle = menuToggle.contains(event.target);
-
-            if (!clickedInsideMenu && !clickedToggle) {
-                closeMenu();
-            }
-
-        });
-
-        // Close menu with Escape key
-        document.addEventListener("keydown", (event) => {
-            if (event.key === "Escape") {
-                closeMenu();
-            }
-        });
+        menuIcon.classList.remove("fa-xmark");
+        menuIcon.classList.add("fa-ellipsis-vertical");
 
     }
+
+    // Toggle menu
+
+    menuToggle.addEventListener("click", function (e) {
+
+        e.stopPropagation();
+
+        if (navMenu.classList.contains("active")) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
+
+    });
+
+    // Close after clicking navigation or auth links
+
+    navMenu.addEventListener("click", function (e) {
+
+        const clickedLink = e.target.closest(
+            ".nav-link, .mobile-login-btn, .mobile-volunteer-btn"
+        );
+
+        if (clickedLink) {
+            closeMenu();
+        }
+
+    });
+
+    // Close when clicking outside
+
+    document.addEventListener("click", function (e) {
+
+        if (
+            !navMenu.contains(e.target) &&
+            !menuToggle.contains(e.target)
+        ) {
+            closeMenu();
+        }
+
+    });
+
+    // Close with Escape
+
+    document.addEventListener("keydown", function (e) {
+
+        if (e.key === "Escape") {
+            closeMenu();
+        }
+
+    });
+
+}
 
 
     /* =====================================

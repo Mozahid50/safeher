@@ -390,7 +390,7 @@ if (stopLocationBtn) {
 
 
 /* =========================================
-   MISSING PERSON AUTO SLIDER
+   MISSING PERSON INFINITE AUTO SLIDER
 ========================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -401,34 +401,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const carousel = track.closest(".missing-carousel");
 
+    if (!carousel) return;
+
     let cards = Array.from(
         track.querySelectorAll(".missing-card")
     );
 
-    if (!carousel || cards.length <= 1) return;
+    if (cards.length <= 1) return;
 
     let currentIndex = 0;
-    let sliderTimer = null;
+    let timer = null;
 
     let touchStartX = 0;
     let touchEndX = 0;
 
-    // RESPONSIVE VISIBLE CARDS
     function getVisibleCards() {
-
         if (window.innerWidth <= 600) return 1;
-
         if (window.innerWidth <= 768) return 2;
-
         return 3;
     }
 
-    // CARD WIDTH + GAP
     function getStep() {
 
-        if (!cards.length) return 0;
+        const card = cards[0];
 
-        const cardWidth = cards[0].getBoundingClientRect().width;
+        const cardWidth = card.getBoundingClientRect().width;
 
         const gap = parseFloat(
             getComputedStyle(track).gap
@@ -437,88 +434,77 @@ document.addEventListener("DOMContentLoaded", function () {
         return cardWidth + gap;
     }
 
-    // UPDATE POSITION
     function updateSlider() {
 
-        const position = currentIndex * getStep();
-
         track.style.transform =
-            `translate3d(-${position}px, 0, 0)`;
+            `translateX(-${currentIndex * getStep()}px)`;
+
     }
 
-    // NEXT CARD
     function nextSlide() {
 
-        const maxIndex = cards.length - getVisibleCards();
+        const visible = getVisibleCards();
+
+        const maxIndex = cards.length - visible;
 
         if (maxIndex <= 0) return;
 
-        currentIndex++;
-
-        if (currentIndex > maxIndex) {
+        if (currentIndex >= maxIndex) {
             currentIndex = 0;
+        } else {
+            currentIndex++;
         }
 
         updateSlider();
     }
 
-    // PREVIOUS CARD
     function previousSlide() {
 
         const maxIndex = cards.length - getVisibleCards();
 
         if (maxIndex <= 0) return;
 
-        currentIndex--;
-
-        if (currentIndex < 0) {
+        if (currentIndex <= 0) {
             currentIndex = maxIndex;
+        } else {
+            currentIndex--;
         }
 
         updateSlider();
     }
 
-    // STOP AUTO SLIDE
     function stopSlider() {
-
-        clearInterval(sliderTimer);
-
+        clearInterval(timer);
     }
 
-    // START AUTO SLIDE
     function startSlider() {
 
         stopSlider();
 
-        const visible = getVisibleCards();
+        // Mobile: Slide through every card
+        // Desktop: Slide only when extra cards exist
 
-        if (cards.length <= visible) {
-
+        if (cards.length <= getVisibleCards()) {
             currentIndex = 0;
             updateSlider();
-
             return;
         }
 
-        sliderTimer = setInterval(function () {
-
-            nextSlide();
-
-        }, 3000);
+        timer = setInterval(nextSlide, 3000);
     }
 
-    // MOBILE SWIPE
-    carousel.addEventListener("touchstart", function (event) {
+    // TOUCH SWIPE
+    carousel.addEventListener("touchstart", function (e) {
 
-        touchStartX = event.touches[0].clientX;
+        touchStartX = e.touches[0].clientX;
 
         stopSlider();
 
     }, { passive: true });
 
-    carousel.addEventListener("touchend", function (event) {
+    carousel.addEventListener("touchend", function (e) {
 
-        touchEndX = event.changedTouches[0].clientX;
+        touchEndX = e.changedTouches[0].clientX;
 
         const difference = touchStartX - touchEndX;
 
@@ -536,9 +522,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }, { passive: true });
 
-    // PAUSE ON HOVER
+    // MOUSE HOVER
     carousel.addEventListener("mouseenter", stopSlider);
-
     carousel.addEventListener("mouseleave", startSlider);
 
     // RESIZE
@@ -552,7 +537,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
-    // INITIALIZE
     updateSlider();
 
     startSlider();

@@ -2878,3 +2878,59 @@ a:focus-visible {
     }
 
 }
+
+
+/* =========================================
+   MISSING CARD ANIMATED GRADIENT BORDER
+========================================= */
+
+.missing-card {
+    position: relative;
+    isolation: isolate;
+    border: 2px solid transparent;
+    border-radius: 16px;
+
+    background:
+        linear-gradient(#fff, #fff) padding-box,
+        linear-gradient(
+            120deg,
+            #B85C83,
+            #F2A6C7,
+            #D8A5F0,
+            #8E75C9,
+            #B85C83
+        ) border-box;
+
+    background-size:
+        100% 100%,
+        300% 300%;
+
+    animation: missingBorderGlow 4s linear infinite;
+
+    transition: box-shadow 0.3s ease;
+}
+
+@keyframes missingBorderGlow {
+    0% {
+        background-position: 0 0, 0% 50%;
+    }
+
+    50% {
+        background-position: 0 0, 100% 50%;
+    }
+
+    100% {
+        background-position: 0 0, 0% 50%;
+    }
+}
+
+.missing-card:hover {
+    box-shadow: 0 0 14px rgba(184, 92, 131, 0.20);
+}
+
+/* Mobile & All Cards */
+@media (prefers-reduced-motion: reduce) {
+    .missing-card {
+        animation: none;
+    }
+}

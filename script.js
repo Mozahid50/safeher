@@ -486,203 +486,51 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-/* =========================================
-   07. MISSING PERSON INFINITE AUTO SLIDER
-========================================= */
-
 document.addEventListener("DOMContentLoaded", function () {
-
     const track = document.getElementById("missingTrack");
+    const carousel = document.querySelector(".missing-carousel");
 
-    if (!track) return;
+    if (!track || !carousel) return;
 
-    const carousel = track.closest(".missing-carousel");
-
-    if (!carousel) return;
-
-
-    let cards = Array.from(
-        track.querySelectorAll(".missing-card")
-    );
+    const cards = Array.from(track.querySelectorAll(".missing-card"));
 
     if (cards.length <= 1) return;
 
-
     let currentIndex = 0;
-    let timer = null;
+    let slideTimer;
 
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-
-    function getVisibleCards() {
-
-        if (window.innerWidth <= 767) return 1;
-
-        if (window.innerWidth <= 1024) return 2;
-
-        return 3;
-
-    }
-
-
-    function getStep() {
-
-        const card = cards[0];
-
-        const cardWidth = card.getBoundingClientRect().width;
-
-        const gap = parseFloat(
-            getComputedStyle(track).gap
-        ) || 0;
-
-        return cardWidth + gap;
-
-    }
-
-
-    function updateSlider() {
+    function moveSlide() {
+        const cardWidth = cards[0].getBoundingClientRect().width;
+        const gap = parseFloat(getComputedStyle(track).gap) || 0;
 
         track.style.transform =
-            `translateX(-${currentIndex * getStep()}px)`;
-
+            `translateX(-${currentIndex * (cardWidth + gap)}px)`;
     }
-
 
     function nextSlide() {
+        currentIndex++;
 
-        const visible = getVisibleCards();
-
-        const maxIndex = cards.length - visible;
-
-        if (maxIndex <= 0) return;
-
-
-        if (currentIndex >= maxIndex) {
-
+        if (currentIndex >= cards.length) {
             currentIndex = 0;
-
-        } else {
-
-            currentIndex++;
-
         }
 
-        updateSlider();
-
+        moveSlide();
     }
-
-
-    function previousSlide() {
-
-        const maxIndex = cards.length - getVisibleCards();
-
-        if (maxIndex <= 0) return;
-
-
-        if (currentIndex <= 0) {
-
-            currentIndex = maxIndex;
-
-        } else {
-
-            currentIndex--;
-
-        }
-
-        updateSlider();
-
-    }
-
-
-    function stopSlider() {
-
-        clearInterval(timer);
-
-    }
-
 
     function startSlider() {
-
-        stopSlider();
-
-        // Mobile: Slide through every card
-        // Desktop: Slide only when extra cards exist
-
-        if (cards.length <= getVisibleCards()) {
-
-            currentIndex = 0;
-
-            updateSlider();
-
-            return;
-
-        }
-
-        timer = setInterval(nextSlide, 3000);
-
+        clearInterval(slideTimer);
+        slideTimer = setInterval(nextSlide, 3000);
     }
 
-
-    // TOUCH SWIPE
-
-    carousel.addEventListener("touchstart", function (e) {
-
-        touchStartX = e.touches[0].clientX;
-
-        stopSlider();
-
-    }, { passive: true });
-
-
-    carousel.addEventListener("touchend", function (e) {
-
-        touchEndX = e.changedTouches[0].clientX;
-
-        const difference = touchStartX - touchEndX;
-
-
-        if (Math.abs(difference) > 40) {
-
-            if (difference > 0) {
-
-                nextSlide();
-
-            } else {
-
-                previousSlide();
-
-            }
-
-        }
-
-        startSlider();
-
-    }, { passive: true });
-
-
-    // MOUSE HOVER
+    function stopSlider() {
+        clearInterval(slideTimer);
+    }
 
     carousel.addEventListener("mouseenter", stopSlider);
-
     carousel.addEventListener("mouseleave", startSlider);
 
+    window.addEventListener("resize", moveSlide);
 
-    // RESIZE
-
-    window.addEventListener("resize", function () {
-
-        currentIndex = 0;
-
-        updateSlider();
-
-        startSlider();
-
-    });
-
-
-    updateSlider();
-
+    moveSlide();
     startSlider();
-
 });

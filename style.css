@@ -2253,3 +2253,69 @@ button:focus-visible, a:focus-visible {
     }
 
 }
+
+
+/* MOBILE: COMPACT WIDE MISSING PERSON CARD */
+
+@media (max-width: 600px) {
+
+    .missing-carousel {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .missing-track {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        gap: 12px;
+        transition: transform 0.55s ease-in-out;
+        align-items: stretch;
+    }
+
+    .missing-card {
+        flex: 0 0 100% !important;
+        width: 100% !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
+        height: 175px !important;
+        min-height: 175px !important;
+        max-height: 175px !important;
+        display: flex !important;
+        flex-direction: row !important;
+        overflow: hidden;
+        box-sizing: border-box;
+    }
+
+    .missing-card .missing-photo {
+        flex: 0 0 38% !important;
+        width: 38% !important;
+        height: 175px !important;
+        min-height: 175px !important;
+        max-height: 175px !important;
+        object-fit: cover;
+    }
+
+    .missing-card .missing-details {
+        flex: 1;
+        min-width: 0;
+        padding: 10px !important;
+        overflow: hidden;
+    }
+
+    .missing-card h3 {
+        font-size: 14px !important;
+        margin-bottom: 5px;
+    }
+
+    .missing-card p {
+        font-size: 11px !important;
+        line-height: 1.4 !important;
+        margin-bottom: 4px;
+    }
+
+    .missing-card button,
+    .missing-card a {
+        font-size: 11px !important;
+        padding: 7px 10px !important;
+    }
+}

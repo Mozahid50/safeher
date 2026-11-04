@@ -517,9 +517,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function getVisibleCards() {
 
-        if (window.innerWidth <= 600) return 1;
+        if (window.innerWidth <= 767) return 1;
 
-        if (window.innerWidth <= 768) return 2;
+        if (window.innerWidth <= 1024) return 2;
 
         return 3;
 

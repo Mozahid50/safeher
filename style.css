@@ -2211,3 +2211,32 @@ button:focus-visible, a:focus-visible {
         animation: none !important;
     }
 }
+
+
+/* =========================================
+   MISSING PERSON SLIDER — MOBILE FIX
+   Mobile: Show Only 1 Card
+   Tablet/Desktop: Keep Existing Layout
+========================================= */
+
+@media (max-width: 767px) {
+
+    .missing-carousel {
+        overflow: hidden;
+    }
+
+    .missing-track {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 0;
+    }
+
+    .missing-card {
+        flex: 0 0 100%;
+        width: 100%;
+        max-width: 100%;
+        min-width: 100%;
+        box-sizing: border-box;
+    }
+
+}

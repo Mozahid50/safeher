@@ -389,43 +389,45 @@ if (stopLocationBtn) {
 });
 
 
-/* =====================================
-   MISSING PERSON AUTO SLIDER
-===================================== */
-
 document.addEventListener("DOMContentLoaded", function () {
 
-    const grid = document.querySelector(".missing-grid");
+    const grid = document.querySelector(
+        ".missing-section .missing-grid"
+    );
 
     if (!grid) return;
 
     const cards = grid.querySelectorAll(".missing-card");
 
-    let current = 0;
-    let timer;
+    if (cards.length <= 1) return;
+
+    let index = 0;
+    let sliderTimer;
 
     function stopSlider() {
-        clearInterval(timer);
+        clearInterval(sliderTimer);
     }
 
     function startSlider() {
 
         stopSlider();
 
-        // Desktop: No slider
         if (window.innerWidth > 600) {
-            current = 0;
+            index = 0;
             grid.scrollLeft = 0;
             return;
         }
 
-        // Mobile: Auto slide
-        timer = setInterval(function () {
+        sliderTimer = setInterval(function () {
 
-            current = (current + 1) % cards.length;
+            index++;
+
+            if (index >= cards.length) {
+                index = 0;
+            }
 
             grid.scrollTo({
-                left: current * grid.clientWidth,
+                left: index * grid.clientWidth,
                 behavior: "smooth"
             });
 
@@ -436,9 +438,9 @@ document.addEventListener("DOMContentLoaded", function () {
         passive: true
     });
 
-    grid.addEventListener("touchend", startSlider, {
-        passive: true
-    });
+    grid.addEventListener("touchend", function () {
+        startSlider();
+    }, { passive: true });
 
     window.addEventListener("resize", startSlider);
 

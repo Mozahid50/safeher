@@ -387,3 +387,63 @@ if (stopLocationBtn) {
 
 
 });
+
+
+/* =====================================
+   MISSING PERSON AUTO SLIDER
+===================================== */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const grid = document.querySelector(".missing-grid");
+
+    if (!grid) return;
+
+    const cards = grid.querySelectorAll(".missing-card");
+
+    let current = 0;
+    let timer;
+
+    function stopSlider() {
+        clearInterval(timer);
+    }
+
+    function startSlider() {
+
+        stopSlider();
+
+        // Desktop: No slider
+        if (window.innerWidth > 600) {
+            current = 0;
+            grid.scrollLeft = 0;
+            return;
+        }
+
+        // Mobile: Auto slide
+        timer = setInterval(function () {
+
+            current = (current + 1) % cards.length;
+
+            grid.scrollTo({
+                left: current * grid.clientWidth,
+                behavior: "smooth"
+            });
+
+        }, 3000);
+    }
+
+    grid.addEventListener("touchstart", stopSlider, {
+        passive: true
+    });
+
+    grid.addEventListener("touchend", startSlider, {
+        passive: true
+    });
+
+    window.addEventListener("resize", startSlider);
+
+    startSlider();
+
+});
+
+

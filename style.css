@@ -1107,6 +1107,29 @@ a:focus-visible {
     font-size: 11px;
 }
 
+/* =====================================
+   MISSING PERSON MOBILE CAROUSEL
+===================================== */
+
+@media (max-width: 600px) {
+
+    .missing-section .missing-grid {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 0;
+        overflow: hidden;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .missing-section .missing-card {
+        flex: 0 0 100%;
+        width: 100%;
+        min-width: 100%;
+    }
+
+}
+
 
 /* 09. ABOUT SECTION */
 
@@ -2812,4 +2835,6 @@ a:focus-visible {
         transition-duration: 0.01ms !important;
     }
 }
+
+
 

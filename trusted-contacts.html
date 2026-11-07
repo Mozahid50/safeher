@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Trusted Contacts | SafeHer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* =====================================
+           PAGE BASE
+        ===================================== */
+
+        .tc-page,
+        .tc-page * {
+            box-sizing: border-box;
+        }
+
+        .tc-page {
+            background: var(--background);
+            padding: 25px 0 35px;
+            min-height: auto;
+        }
+
+        .tc-container {
+            width: min(92%, 850px);
+            margin: auto;
+        }
+
+        /* =====================================
+           NAVBAR
+        ===================================== */
+
+        .tc-navbar {
+            min-height: 68px;
+            padding-top: 9px;
+            padding-bottom: 9px;
+        }
+
+        .tc-navbar .nav-actions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 9px;
+        }
+
+        .tc-navbar .nav-actions a {
+            min-width: 88px;
+            height: 39px;
+            padding: 0 15px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            white-space: nowrap;
+
+            transition: all .2s ease;
+        }
+
+        .tc-navbar .home-btn {
+            background: #F7EAF0;
+            color: #964365;
+            border: 1px solid #E8CEDA;
+        }
+
+        .tc-navbar .login-btn {
+            background: #FFFFFF;
+            color: #964365;
+            border: 1px solid #B85C83;
+        }
+
+        .tc-navbar .volunteer-btn {
+            background: #B85C83;
+            color: #FFFFFF;
+            border: 1px solid #B85C83;
+        }
+
+        .tc-navbar .nav-actions a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(184, 92, 131, .13);
+        }
+
+        .tc-navbar .home-btn:hover,
+        .tc-navbar .login-btn:hover {
+            background: #F1DCE6;
+        }
+
+        .tc-navbar .volunteer-btn:hover {
+            background: #964365;
+            border-color: #964365;
+        }
+
+        /* =====================================
+           PAGE HEADING
+        ===================================== */
+
+        .tc-heading {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .tc-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 6px 12px;
+
+            border-radius: 4px;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+
+            font-size: 10px;
+            font-weight: 700;
+            margin-bottom: 9px;
+        }
+
+        .tc-heading h1 {
+            font-size: clamp(25px, 4vw, 34px);
+            color: var(--dark);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 6px;
+        }
+
+        .tc-heading h1 span {
+            color: var(--primary);
+        }
+
+        .tc-heading p {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.6;
+            max-width: 540px;
+            margin: auto;
+        }
+
+        /* =====================================
+           SAFETY NOTICE
+        ===================================== */
+
+        .tc-notice {
+            display: flex;
+            align-items: flex-start;
+            gap: 11px;
+
+            padding: 11px 14px;
+            background: #FFF0F3;
+            border: 1px solid #F4D3DE;
+            border-left: 3px solid var(--primary);
+            border-radius: 5px;
+
+            margin-bottom: 16px;
+        }
+
+        .tc-notice > i {
+            color: var(--primary);
+            font-size: 17px;
+            margin-top: 2px;
+        }
+
+        .tc-notice h3 {
+            color: var(--dark);
+            font-size: 12px;
+            margin-bottom: 3px;
+        }
+
+        .tc-notice p {
+            color: var(--text);
+            font-size: 10px;
+            line-height: 1.6;
+        }
+
+        /* =====================================
+           MAIN CARD
+        ===================================== */
+
+        .tc-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 19px 21px;
+            box-shadow: var(--shadow);
+        }
+
+        .tc-section {
+            margin-bottom: 22px;
+        }
+
+        .tc-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .tc-section-heading {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+
+            padding-bottom: 9px;
+            margin-bottom: 13px;
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .tc-section-icon {
+            width: 32px;
+            height: 32px;
+            flex-shrink: 0;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 5px;
+            background: var(--primary-light);
+            color: var(--primary);
+            font-size: 13px;
+        }
+
+        .tc-section-heading h2 {
+            color: var(--dark);
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .tc-section-heading p {
+            color: var(--muted);
+            font-size: 10px;
+            margin-top: 2px;
+        }
+
+        /* =====================================
+           FORM
+        ===================================== */
+
+        .tc-form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px 14px;
+        }
+
+        .tc-field {
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .tc-field.full {
+            grid-column: 1 / -1;
+        }
+
+        .tc-field label {
+            color: var(--dark);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .tc-field label span {
+            color: var(--danger);
+        }
+
+        .tc-field input,
+        .tc-field select,
+        .tc-field textarea {
+            width: 100%;
+            min-width: 0;
+
+            border: 1px solid var(--border);
+            border-radius: 4px;
+
+            background: #FFFBFD;
+            color: var(--dark);
+
+            padding: 8px 10px;
+            font-family: inherit;
+            font-size: 11px;
+
+            outline: none;
+            transition: all .2s ease;
+        }
+
+        .tc-field input,
+        .tc-field select {
+            height: 37px;
+            min-height: 37px;
+        }
+
+        .tc-field textarea {
+            height: 75px;
+            min-height: 75px;
+            resize: vertical;
+            line-height: 1.6;
+        }
+
+        .tc-field input:focus,
+        .tc-field select:focus,
+        .tc-field textarea:focus {
+            border-color: var(--primary);
+            background: #FFFFFF;
+            box-shadow: 0 0 0 2px rgba(184, 92, 131, .09);
+        }
+
+        .tc-field input::placeholder,
+        .tc-field textarea::placeholder {
+            color: #B5A5AF;
+        }
+
+        .tc-hint {
+            color: var(--muted);
+            font-size: 9px;
+            line-height: 1.5;
+        }
+
+        /* =====================================
+           FORM BUTTONS
+        ===================================== */
+
+        .tc-form-actions {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            margin-top: 15px;
+        }
+
+        .tc-btn {
+            min-height: 38px;
+            padding: 0 17px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+
+            border: none;
+            border-radius: 4px;
+
+            font-family: inherit;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+
+            transition: all .2s ease;
+        }
+
+        .tc-btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #FFFFFF;
+        }
+
+        .tc-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 13px rgba(184, 92, 131, .2);
+        }
+
+        .tc-btn-secondary {
+            background: #F7EAF0;
+            color: #964365;
+            border: 1px solid #E8CEDA;
+        }
+
+        .tc-btn-secondary:hover {
+            background: #F1DCE6;
+        }
+
+        /* =====================================
+           CONTACT LIST
+        ===================================== */
+
+        .tc-contact-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .tc-count {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            min-width: 25px;
+            height: 23px;
+            padding: 0 7px;
+
+            border-radius: 4px;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .tc-contact-list {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 11px;
+        }
+
+        .tc-contact-item {
+            min-width: 0;
+            padding: 13px;
+
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: #FFFBFD;
+
+            transition: all .2s ease;
+        }
+
+        .tc-contact-item:hover {
+            border-color: #DDB2C5;
+            box-shadow: 0 4px 12px rgba(184, 92, 131, .07);
+        }
+
+        .tc-contact-top {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .tc-avatar {
+            width: 37px;
+            height: 37px;
+            flex-shrink: 0;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 5px;
+            background: var(--primary-light);
+            color: var(--primary);
+            font-size: 15px;
+        }
+
+        .tc-contact-info {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .tc-contact-info h3 {
+            color: var(--dark);
+            font-size: 12px;
+            font-weight: 700;
+            overflow-wrap: anywhere;
+            margin-bottom: 3px;
+        }
+
+        .tc-contact-info p {
+            color: var(--muted);
+            font-size: 10px;
+            line-height: 1.5;
+            overflow-wrap: anywhere;
+        }
+
+        .tc-contact-note {
+            margin-top: 10px;
+            padding: 8px 9px;
+
+            border-radius: 4px;
+            background: #FFF3F7;
+
+            color: #776471;
+            font-size: 10px;
+            line-height: 1.5;
+            overflow-wrap: anywhere;
+        }
+
+        .tc-contact-note i {
+            color: var(--primary);
+            margin-right: 4px;
+        }
+
+        .tc-contact-actions {
+            display: flex;
+            gap: 7px;
+            margin-top: 11px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+        }
+
+        .tc-action-btn {
+            flex: 1;
+            min-width: 0;
+            min-height: 31px;
+            padding: 0 7px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+
+            border: 1px solid transparent;
+            border-radius: 4px;
+
+            font-family: inherit;
+            font-size: 10px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+
+            transition: all .2s ease;
+        }
+
+        .tc-call-btn {
+            background: #EAF7F1;
+            color: #247456;
+            border-color: #CBE9DA;
+        }
+
+        .tc-edit-btn {
+            background: #F7EAF0;
+            color: #964365;
+            border-color: #E8CEDA;
+        }
+
+        .tc-delete-btn {
+            background: #FFF0F0;
+            color: #C34C58;
+            border-color: #F1D0D3;
+        }
+
+        .tc-action-btn:hover {
+            filter: brightness(.96);
+            transform: translateY(-1px);
+        }
+
+        /* =====================================
+           EMPTY STATE
+        ===================================== */
+
+        .tc-empty {
+            padding: 28px 15px;
+            text-align: center;
+
+            border: 1px dashed #DDB2C5;
+            border-radius: 5px;
+            background: #FFFAFC;
+        }
+
+        .tc-empty i {
+            color: #C98AA7;
+            font-size: 27px;
+            margin-bottom: 9px;
+        }
+
+        .tc-empty h3 {
+            color: var(--dark);
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .tc-empty p {
+            color: var(--muted);
+            font-size: 10px;
+            line-height: 1.6;
+        }
+
+        /* =====================================
+           MESSAGE
+        ===================================== */
+
+        .tc-message {
+            display: none;
+            padding: 10px 12px;
+            margin-top: 12px;
+
+            border-radius: 5px;
+            font-size: 10px;
+            line-height: 1.6;
+        }
+
+        .tc-message.success {
+            display: block;
+            color: #247456;
+            background: #EAF7F1;
+            border: 1px solid #BFE6D4;
+        }
+
+        .tc-message.error {
+            display: block;
+            color: #A53E4B;
+            background: #FFF0F0;
+            border: 1px solid #F1D0D3;
+        }
+
+        /* =====================================
+           BOTTOM NOTE
+        ===================================== */
+
+        .tc-bottom-note {
+            text-align: center;
+            color: var(--muted);
+            font-size: 9px;
+            line-height: 1.6;
+            margin-top: 13px;
+        }
+
+        .tc-bottom-note i {
+            color: var(--primary);
+            margin-right: 4px;
+        }
+
+        /* =====================================
+           COMPACT FOOTER
+        ===================================== */
+
+        .tc-footer {
+            background: #F0E1E8;
+            color: #554451;
+            margin-top: 25px;
+            padding: 22px 0 0;
+        }
+
+        .tc-footer-container {
+            width: min(92%, 1100px);
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: 1.3fr 1fr 1.1fr;
+            gap: 25px;
+
+            padding-bottom: 18px;
+        }
+
+        .tc-footer-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            color: #29152F;
+            font-size: 19px;
+            font-weight: 800;
+            text-decoration: none;
+            margin-bottom: 8px;
+        }
+
+        .tc-footer-icon {
+            width: 32px;
+            height: 32px;
+
+            display: grid;
+            place-items: center;
+
+            color: white;
+            background: linear-gradient(135deg, #B85C83, #964365);
+            border-radius: 5px;
+        }
+
+        .tc-footer-brand p,
+        .tc-footer-note p {
+            font-size: 11px;
+            line-height: 1.6;
+            color: #776471;
+            max-width: 380px;
+        }
+
+        .tc-footer-links h3,
+        .tc-footer-note h3 {
+            color: #29152F;
+            font-size: 13px;
+            margin-bottom: 9px;
+        }
+
+        .tc-footer-links {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 7px;
+        }
+
+        .tc-footer-links a {
+            color: #776471;
+            text-decoration: none;
+            font-size: 11px;
+            transition: all .2s ease;
+        }
+
+        .tc-footer-links a:hover {
+            color: #B85C83;
+            transform: translateX(3px);
+        }
+
+        .tc-footer-bottom {
+            border-top: 1px solid rgba(184, 92, 131, .18);
+            padding: 10px 5%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tc-footer-bottom p {
+            color: #887784;
+            font-size: 10px;
+            margin: 0;
+        }
+
+        .tc-footer-bottom i {
+            color: #B85C83;
+        }
+
+        /* =====================================
+           TABLET
+        ===================================== */
+
+        @media (max-width: 768px) {
+
+            .tc-container {
+                width: 94%;
+            }
+
+            .tc-card {
+                padding: 17px;
+            }
+
+            .tc-footer-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 18px;
+            }
+
+            .tc-footer-brand {
+                grid-column: 1 / -1;
+            }
+        }
+
+        /* =====================================
+           MOBILE
+        ===================================== */
+
+        @media (max-width: 550px) {
+
+            .tc-navbar {
+                min-height: 60px;
+                padding: 8px 0;
+            }
+
+            .tc-navbar .nav-actions {
+                gap: 5px;
+            }
+
+            .tc-navbar .nav-actions a {
+                min-width: auto;
+                height: 34px;
+                padding: 0 9px;
+                font-size: 10px;
+                gap: 4px;
+            }
+
+            .tc-page {
+                padding: 20px 0 25px;
+            }
+
+            .tc-container {
+                width: 93%;
+            }
+
+            .tc-heading {
+                margin-bottom: 15px;
+            }
+
+            .tc-heading h1 {
+                font-size: 26px;
+            }
+
+            .tc-heading p {
+                font-size: 11px;
+            }
+
+            .tc-badge {
+                font-size: 9px;
+                padding: 5px 9px;
+            }
+
+            .tc-notice {
+                padding: 10px;
+                margin-bottom: 12px;
+            }
+
+            .tc-card {
+                padding: 14px 12px;
+                border-radius: 6px;
+            }
+
+            .tc-section {
+                margin-bottom: 18px;
+            }
+
+            .tc-section-heading {
+                margin-bottom: 10px;
+                padding-bottom: 8px;
+            }
+
+            .tc-section-icon {
+                width: 29px;
+                height: 29px;
+                font-size: 12px;
+            }
+
+            .tc-section-heading h2 {
+                font-size: 12px;
+            }
+
+            .tc-form-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .tc-field.full {
+                grid-column: auto;
+            }
+
+            .tc-contact-list {
+                grid-template-columns: 1fr;
+            }
+
+            .tc-form-actions {
+                flex-wrap: wrap;
+            }
+
+            .tc-footer {
+                margin-top: 20px;
+                padding-top: 18px;
+            }
+
+            .tc-footer-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 18px 12px;
+                padding-bottom: 15px;
+            }
+
+            .tc-footer-brand,
+            .tc-footer-note {
+                grid-column: 1 / -1;
+            }
+
+            .tc-footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                padding: 10px;
+            }
+        }
+
+        /* =====================================
+           EXTRA SMALL MOBILE
+        ===================================== */
+
+        @media (max-width: 360px) {
+
+            .tc-navbar .nav-actions {
+                gap: 4px;
+            }
+
+            .tc-navbar .nav-actions a {
+                padding: 0 6px;
+                font-size: 9px;
+            }
+
+            .tc-heading h1 {
+                font-size: 23px;
+            }
+
+            .tc-card {
+                padding: 12px 9px;
+            }
+
+            .tc-footer-container {
+                grid-template-columns: 1fr;
+            }
+
+            .tc-footer-brand,
+            .tc-footer-note {
+                grid-column: auto;
+            }
+
+            .tc-action-btn {
+                font-size: 9px;
+                gap: 3px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <header class="header">
+        <nav class="navbar container tc-navbar">
+
+            <a href="index.html" class="logo">
+                <span class="logo-icon">
+                    <i class="fa-solid fa-shield-heart"></i>
+                </span>
+                <span>SafeHer</span>
+            </a>
+
+            <div class="nav-actions">
+
+                <a href="index.html" class="home-btn">
+                    <i class="fa-solid fa-house"></i>
+                    Home
+                </a>
+
+                <a href="login.html" class="login-btn">
+                    Login
+                </a>
+
+                <a href="register.html" class="volunteer-btn">
+                    Get Volunteer
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+
+            </div>
+
+        </nav>
+    </header>
+
+
+    <!-- MAIN PAGE -->
+
+    <main class="tc-page">
+
+        <div class="tc-container">
+
+            <!-- HEADING -->
+
+            <div class="tc-heading">
+
+                <span class="tc-badge">
+                    <i class="fa-solid fa-user-shield"></i>
+                    SAFEHER SUPPORT
+                </span>
+
+                <h1>
+                    Trusted <span>Contacts</span>
+                </h1>
+
+                <p>
+                    Add people you trust and keep their contact information
+                    available whenever you need support.
+                </p>
+
+            </div>
+
+
+            <!-- SAFETY NOTICE -->
+
+            <div class="tc-notice">
+
+                <i class="fa-solid fa-circle-info"></i>
+
+                <div>
+                    <h3>Stay Connected With People You Trust</h3>
+
+                    <p>
+                        Add family members, friends or anyone you trust.
+                        You can quickly call them whenever you need help.
+                        These contacts are stored only in this frontend demo.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <!-- MAIN CARD -->
+
+            <div class="tc-card">
+
+                <!-- ADD CONTACT -->
+
+                <section class="tc-section">
+
+                    <div class="tc-section-heading">
+
+                        <div class="tc-section-icon">
+                            <i class="fa-solid fa-user-plus"></i>
+                        </div>
+
+                        <div>
+                            <h2 id="formHeading">Add Trusted Contact</h2>
+                            <p>Add someone you can reach in an emergency.</p>
+                        </div>
+
+                    </div>
+
+
+                    <form id="contactForm">
+
+                        <div class="tc-form-grid">
+
+                            <div class="tc-field">
+
+                                <label for="contactName">
+                                    Full Name <span>*</span>
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="contactName"
+                                    placeholder="Enter full name"
+                                    maxlength="80"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="tc-field">
+
+                                <label for="relationship">
+                                    Relationship <span>*</span>
+                                </label>
+
+                                <select id="relationship" required>
+                                    <option value="">Select relationship</option>
+                                    <option>Mother</option>
+                                    <option>Father</option>
+                                    <option>Brother</option>
+                                    <option>Sister</option>
+                                    <option>Husband</option>
+                                    <option>Friend</option>
+                                    <option>Relative</option>
+                                    <option>Teacher</option>
+                                    <option>Colleague</option>
+                                    <option>Other</option>
+                                </select>
+
+                            </div>
+
+
+                            <div class="tc-field full">
+
+                                <label for="contactPhone">
+                                    Phone Number <span>*</span>
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    id="contactPhone"
+                                    placeholder="Enter phone number"
+                                    maxlength="20"
+                                    required
+                                >
+
+                                <span class="tc-hint">
+                                    Include the country code when necessary.
+                                </span>
+
+                            </div>
+
+
+                            <div class="tc-field full">
+
+                                <label for="contactNote">
+                                    Additional / Emergency Note
+                                </label>
+
+                                <textarea
+                                    id="contactNote"
+                                    maxlength="300"
+                                    placeholder="Write an optional note..."
+                                ></textarea>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="tc-form-actions">
+
+                            <button type="submit" class="tc-btn tc-btn-primary" id="saveContactBtn">
+                                <i class="fa-solid fa-plus"></i>
+                                Add Contact
+                            </button>
+
+                            <button type="button" class="tc-btn tc-btn-secondary" id="cancelEditBtn" hidden>
+                                <i class="fa-solid fa-xmark"></i>
+                                Cancel
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                    <div id="tcMessage" class="tc-message" role="status" aria-live="polite"></div>
+
+                </section>
+
+
+                <!-- CONTACT LIST -->
+
+                <section class="tc-section">
+
+                    <div class="tc-section-heading">
+
+                        <div class="tc-section-icon">
+                            <i class="fa-solid fa-address-book"></i>
+                        </div>
+
+                        <div style="flex:1;">
+
+                            <div class="tc-contact-header">
+                                <div>
+                                    <h2>My Trusted Contacts</h2>
+                                    <p>Manage your saved emergency contacts.</p>
+                                </div>
+
+                                <span class="tc-count" id="contactCount">0</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div id="contactList" class="tc-contact-list"></div>
+
+
+                    <div id="emptyState" class="tc-empty">
+
+                        <i class="fa-solid fa-address-book"></i>
+
+                        <h3>No Trusted Contacts Yet</h3>
+
+                        <p>
+                            Add your first trusted contact using the form above.
+                            Your saved contacts will appear here.
+                        </p>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+
+            <p class="tc-bottom-note">
+                <i class="fa-solid fa-lock"></i>
+                Your safety matters. This page is currently a frontend demonstration.
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer class="tc-footer">
+
+        <div class="tc-footer-container">
+
+            <div class="tc-footer-brand">
+
+                <a href="index.html" class="tc-footer-logo">
+
+                    <span class="tc-footer-icon">
+                        <i class="fa-solid fa-shield-heart"></i>
+                    </span>
+
+                    SafeHer
+
+                </a>
+
+                <p>
+                    Empowering women with safety, support and awareness.
+                    Together, we can create a safer community for everyone.
+                </p>
+
+            </div>
+
+
+            <div class="tc-footer-links">
+
+                <h3>Quick Links</h3>
+
+                <a href="index.html">Home</a>
+                <a href="trusted-contacts.html">Trusted Contacts</a>
+                <a href="harassment-report.html">Harassment Report</a>
+
+            </div>
+
+
+            <div class="tc-footer-note">
+
+                <h3>Your Safety Matters</h3>
+
+                <p>
+                    Stay connected with the people you trust.
+                    A reliable support network can make a difference
+                    when you need help.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="tc-footer-bottom">
+
+            <p>
+                &copy; <span id="currentYear"></span> SafeHer.
+                All Rights Reserved.
+            </p>
+
+            <p>
+                Designed for a Safer Tomorrow
+                <i class="fa-solid fa-heart"></i>
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- EXISTING JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+
+    <!-- TRUSTED CONTACTS JAVASCRIPT -->
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const form = document.getElementById("contactForm");
+
+            const nameInput = document.getElementById("contactName");
+            const relationshipInput = document.getElementById("relationship");
+            const phoneInput = document.getElementById("contactPhone");
+            const noteInput = document.getElementById("contactNote");
+
+            const contactList = document.getElementById("contactList");
+            const emptyState = document.getElementById("emptyState");
+            const contactCount = document.getElementById("contactCount");
+
+            const message = document.getElementById("tcMessage");
+
+            const saveButton = document.getElementById("saveContactBtn");
+            const cancelButton = document.getElementById("cancelEditBtn");
+            const formHeading = document.getElementById("formHeading");
+
+            let tcContacts = [];
+            let editingId = null;
+
+            /* CURRENT YEAR */
+
+            document.getElementById("currentYear").textContent =
+                new Date().getFullYear();
+
+
+            /* SHOW MESSAGE */
+
+            function showMessage(text, type = "success") {
+
+                message.textContent = text;
+                message.className = "tc-message " + type;
+
+            }
+
+
+            /* RESET FORM */
+
+            function resetForm() {
+
+                form.reset();
+
+                editingId = null;
+
+                formHeading.textContent = "Add Trusted Contact";
+
+                saveButton.innerHTML =
+                    '<i class="fa-solid fa-plus"></i> Add Contact';
+
+                cancelButton.hidden = true;
+
+            }
+
+
+            /* VALIDATE PHONE */
+
+            function isValidPhone(phone) {
+
+                const cleaned = phone.replace(/[\s()+.-]/g, "");
+
+                return /^\d{7,15}$/.test(cleaned);
+
+            }
+
+
+            /* ESCAPE HTML */
+
+            function escapeHTML(value) {
+
+                return String(value).replace(/[&<>"']/g, function (char) {
+
+                    return {
+                        "&": "&amp;",
+                        "<": "&lt;",
+                        ">": "&gt;",
+                        '"': "&quot;",
+                        "'": "&#039;"
+                    }[char];
+
+                });
+
+            }
+
+
+            /* RENDER CONTACTS */
+
+            function renderContacts() {
+
+                contactList.innerHTML = "";
+
+                contactCount.textContent = tcContacts.length;
+
+                emptyState.style.display =
+                    tcContacts.length === 0 ? "block" : "none";
+
+                tcContacts.forEach(function (contact) {
+
+                    const item = document.createElement("article");
+
+                    item.className = "tc-contact-item";
+
+                    const safeName = escapeHTML(contact.name);
+                    const safeRelationship = escapeHTML(contact.relationship);
+                    const safePhone = escapeHTML(contact.phone);
+                    const safeNote = escapeHTML(contact.note);
+
+                    const phoneForCall = contact.phone.replace(/[^0-9+]/g, "");
+
+                    item.innerHTML = `
+
+                        <div class="tc-contact-top">
+
+                            <div class="tc-avatar">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+
+                            <div class="tc-contact-info">
+
+                                <h3>${safeName}</h3>
+
+                                <p>
+                                    <i class="fa-solid fa-heart"></i>
+                                    ${safeRelationship}
+                                </p>
+
+                                <p>
+                                    <i class="fa-solid fa-phone"></i>
+                                    ${safePhone}
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        ${contact.note ? `
+                            <div class="tc-contact-note">
+                                <i class="fa-solid fa-note-sticky"></i>
+                                ${safeNote}
+                            </div>
+                        ` : ""}
+
+                        <div class="tc-contact-actions">
+
+                            <a
+                                href="tel:${encodeURIComponent(phoneForCall)}"
+                                class="tc-action-btn tc-call-btn"
+                                aria-label="Call ${safeName}"
+                            >
+                                <i class="fa-solid fa-phone"></i>
+                                Call
+                            </a>
+
+                            <button
+                                type="button"
+                                class="tc-action-btn tc-edit-btn"
+                                data-action="edit"
+                                data-id="${contact.id}"
+                            >
+                                <i class="fa-solid fa-pen"></i>
+                                Edit
+                            </button>
+
+                            <button
+                                type="button"
+                                class="tc-action-btn tc-delete-btn"
+                                data-action="delete"
+                                data-id="${contact.id}"
+                            >
+                                <i class="fa-solid fa-trash"></i>
+                                Delete
+                            </button>
+
+                        </div>
+
+                    `;
+
+                    contactList.appendChild(item);
+
+                });
+
+            }
+
+
+            /* ADD / UPDATE CONTACT */
+
+            form.addEventListener("submit", function (event) {
+
+                event.preventDefault();
+
+                if (!form.checkValidity()) {
+
+                    form.reportValidity();
+                    return;
+
+                }
+
+                const name = nameInput.value.trim();
+                const relationship = relationshipInput.value;
+                const phone = phoneInput.value.trim();
+                const note = noteInput.value.trim();
+
+                if (!name || !relationship || !phone) {
+
+                    showMessage("Please fill in all required fields.", "error");
+                    return;
+
+                }
+
+                if (!isValidPhone(phone)) {
+
+                    showMessage("Please enter a valid phone number.", "error");
+                    phoneInput.focus();
+                    return;
+
+                }
+
+                if (editingId !== null) {
+
+                    const index = tcContacts.findIndex(function (contact) {
+                        return contact.id === editingId;
+                    });
+
+                    if (index !== -1) {
+
+                        tcContacts[index] = {
+                            ...tcContacts[index],
+                            name: name,
+                            relationship: relationship,
+                            phone: phone,
+                            note: note
+                        };
+
+                        showMessage("Trusted contact updated successfully.");
+
+                    }
+
+                } else {
+
+                    if (tcContacts.length >= 10) {
+
+                        showMessage("You can add a maximum of 10 contacts.", "error");
+                        return;
+
+                    }
+
+                    tcContacts.push({
+
+                        id: Date.now() + Math.random(),
+                        name: name,
+                        relationship: relationship,
+                        phone: phone,
+                        note: note
+
+                    });
+
+                    showMessage("Trusted contact added successfully.");
+
+                }
+
+                resetForm();
+                renderContacts();
+
+            });
+
+
+            /* EDIT / DELETE CONTACT */
+
+            contactList.addEventListener("click", function (event) {
+
+                const button = event.target.closest("button[data-action]");
+
+                if (!button) return;
+
+                const id = Number(button.dataset.id);
+                const action = button.dataset.action;
+
+                const contact = tcContacts.find(function (item) {
+                    return item.id === id;
+                });
+
+                if (!contact) return;
+
+
+                /* EDIT */
+
+                if (action === "edit") {
+
+                    editingId = id;
+
+                    nameInput.value = contact.name;
+                    relationshipInput.value = contact.relationship;
+                    phoneInput.value = contact.phone;
+                    noteInput.value = contact.note;
+
+                    formHeading.textContent = "Edit Trusted Contact";
+
+                    saveButton.innerHTML =
+                        '<i class="fa-solid fa-floppy-disk"></i> Update Contact';
+
+                    cancelButton.hidden = false;
+
+                    showMessage("Edit the contact details and select Update Contact.");
+
+                    form.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center"
+                    });
+
+                    nameInput.focus();
+
+                }
+
+
+                /* DELETE */
+
+                if (action === "delete") {
+
+                    const confirmed = confirm(
+                        "Are you sure you want to delete " + contact.name + "?"
+                    );
+
+                    if (!confirmed) return;
+
+                    tcContacts = tcContacts.filter(function (item) {
+                        return item.id !== id;
+                    });
+
+                    if (editingId === id) {
+                        resetForm();
+                    }
+
+                    renderContacts();
+
+                    showMessage("Contact deleted successfully.");
+
+                }
+
+            });
+
+
+            /* CANCEL EDIT */
+
+            cancelButton.addEventListener("click", function () {
+
+                resetForm();
+
+                message.className = "tc-message";
+                message.textContent = "";
+
+            });
+
+
+            /* INITIAL RENDER */
+
+            renderContacts();
+
+        });
+
+    </script>
+
+</body>
+</html>

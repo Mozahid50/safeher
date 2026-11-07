@@ -1,0 +1,1867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Public Awareness | SafeHer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <style>
+        /* =========================================
+           PUBLIC AWARENESS - MAIN DESIGN
+        ========================================= */
+
+        .pa-page {
+            width: min(92%, 1000px);
+            margin: auto;
+            padding: 28px 0 40px;
+        }
+
+        /* HEADER */
+
+        .report-navbar .nav-menu {
+            display: none !important;
+        }
+
+        /* HERO */
+
+        .pa-hero {
+            text-align: center;
+            margin-bottom: 22px;
+            animation: paFadeDown .7s ease both;
+        }
+
+        .pa-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 7px 13px;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: .4px;
+        }
+
+        .pa-hero h1 {
+            font-size: clamp(25px, 4vw, 33px);
+            color: var(--dark);
+            margin-bottom: 9px;
+            font-weight: 800;
+        }
+
+        .pa-hero p {
+            max-width: 650px;
+            margin: auto;
+            font-size: 13px;
+            line-height: 1.8;
+            color: var(--muted);
+        }
+
+        /* NOTICE */
+
+        .pa-notice {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 15px;
+            margin-bottom: 23px;
+            background: #fff7fa;
+            border: 1px solid #f4dce6;
+            border-left: 4px solid var(--primary);
+            border-radius: 8px;
+            animation: paFadeUp .7s ease both;
+        }
+
+        .pa-notice-icon {
+            width: 34px;
+            height: 34px;
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            border-radius: 7px;
+        }
+
+        .pa-notice strong {
+            display: block;
+            color: var(--dark);
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+
+        .pa-notice p {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        /* SEARCH AND FILTER */
+
+        .pa-tools {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            padding: 16px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+            animation: paFadeUp .8s ease both;
+        }
+
+        .pa-search {
+            position: relative;
+            margin-bottom: 14px;
+        }
+
+        .pa-search i {
+            position: absolute;
+            top: 50%;
+            left: 14px;
+            transform: translateY(-50%);
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .pa-search input {
+            width: 100%;
+            height: 43px;
+            padding: 0 14px 0 40px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            outline: none;
+            background: var(--white);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 12px;
+            transition: .25s;
+        }
+
+        .pa-search input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(216, 91, 137, .09);
+        }
+
+        .pa-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .pa-filter {
+            border: 1px solid var(--border);
+            background: var(--white);
+            color: var(--muted);
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: .25s;
+        }
+
+        .pa-filter:hover,
+        .pa-filter.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* SECTION HEADING */
+
+        .pa-section-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 17px;
+        }
+
+        .pa-section-heading h2 {
+            color: var(--dark);
+            font-size: 19px;
+            font-weight: 700;
+        }
+
+        .pa-section-heading span {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        /* =========================================
+           ANIMATED CARD BORDER
+        ========================================= */
+
+        .pa-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 19px;
+        }
+
+        .pa-card-border {
+            position: relative;
+            isolation: isolate;
+            padding: 1.5px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: var(--border);
+            transition: transform .3s ease, box-shadow .3s ease;
+        }
+
+        /* Rotating multicolor border */
+
+        .pa-card-border::before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            width: 220%;
+            height: 220%;
+            top: -60%;
+            left: -60%;
+
+            background: conic-gradient(
+                from 0deg,
+                #e84d91,
+                #a855f7,
+                #5498ed,
+                #38bda7,
+                #f4b942,
+                #e84d91
+            );
+
+            animation: paRotateBorder 4s linear infinite;
+        }
+
+        .pa-card-border:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(190, 72, 124, .15);
+        }
+
+        .pa-card {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 9px;
+            background: var(--white);
+        }
+
+        .pa-card-image {
+            height: 150px;
+            overflow: hidden;
+            position: relative;
+            background: var(--primary-light);
+        }
+
+        .pa-card-image img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            transition: transform .5s ease;
+        }
+
+        .pa-card-border:hover .pa-card-image img {
+            transform: scale(1.07);
+        }
+
+        .pa-card-content {
+            padding: 15px;
+        }
+
+        .pa-card-category {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 9px;
+            border-radius: 4px;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            font-size: 10px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .pa-card-content h3 {
+            color: var(--dark);
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 1.5;
+            margin-bottom: 7px;
+        }
+
+        .pa-card-content p {
+            color: var(--muted);
+            font-size: 11.5px;
+            line-height: 1.75;
+            margin-bottom: 13px;
+        }
+
+        .pa-read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 0;
+            border: none;
+            background: transparent;
+            color: var(--primary-dark);
+            font-family: inherit;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: gap .25s;
+        }
+
+        .pa-read-more:hover {
+            gap: 12px;
+        }
+
+        /* CARD REVEAL ANIMATION */
+
+        .pa-reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition:
+                opacity .65s ease,
+                transform .65s ease;
+        }
+
+        .pa-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .pa-empty {
+            display: none;
+            padding: 35px 15px;
+            text-align: center;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--muted);
+            background: var(--white);
+        }
+
+        .pa-empty i {
+            display: block;
+            font-size: 25px;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        /* SAFETY CHECKLIST */
+
+        .pa-checklist {
+            margin-top: 28px;
+            padding: 19px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            box-shadow: var(--shadow);
+        }
+
+        .pa-checklist h2 {
+            color: var(--dark);
+            font-size: 17px;
+            margin-bottom: 7px;
+        }
+
+        .pa-checklist > p {
+            color: var(--muted);
+            font-size: 11.5px;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .pa-checklist-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 13px;
+        }
+
+        .pa-check-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+            color: var(--text);
+            font-size: 11.5px;
+            line-height: 1.6;
+        }
+
+        .pa-check-item i {
+            color: var(--primary);
+            margin-top: 2px;
+        }
+
+        /* EMERGENCY SUPPORT */
+
+        .pa-emergency {
+            margin-top: 19px;
+            padding: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            border: 1px solid #f2d4d8;
+            border-left: 4px solid #d64b5b;
+            border-radius: 8px;
+            background: #fff7f7;
+        }
+
+        .pa-emergency-info h3 {
+            color: #a33746;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .pa-emergency-info p {
+            color: #765b5f;
+            font-size: 11px;
+            line-height: 1.7;
+        }
+
+        .pa-emergency-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            background: #c94052;
+            color: white;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 700;
+            white-space: nowrap;
+            transition: .25s;
+        }
+
+        .pa-emergency-btn:hover {
+            background: #a92e40;
+            transform: translateY(-2px);
+        }
+
+        .pa-disclaimer {
+            text-align: center;
+            margin-top: 17px;
+            color: var(--muted);
+            font-size: 10px;
+            line-height: 1.7;
+        }
+
+        /* =========================================
+           DETAILS MODAL
+        ========================================= */
+
+        .pa-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            padding: 18px;
+            background: rgba(25, 15, 20, .58);
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(3px);
+        }
+
+        .pa-modal.show {
+            display: flex;
+            animation: paFadeIn .25s ease;
+        }
+
+        .pa-modal-box {
+            width: min(100%, 550px);
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 24px;
+            border-radius: 9px;
+            background: var(--white);
+            position: relative;
+            animation: paModalUp .3s ease;
+        }
+
+        .pa-modal-close {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 31px;
+            height: 31px;
+            border: none;
+            border-radius: 5px;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            cursor: pointer;
+        }
+
+        .pa-modal-box h2 {
+            padding-right: 30px;
+            color: var(--dark);
+            font-size: 20px;
+            margin: 13px 0;
+        }
+
+        .pa-modal-box h4 {
+            color: var(--dark);
+            font-size: 13px;
+            margin: 17px 0 9px;
+        }
+
+        .pa-modal-box p,
+        .pa-modal-box li {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.85;
+        }
+
+        .pa-modal-box ul {
+            padding-left: 19px;
+        }
+
+        /* =========================================
+           ANIMATIONS
+        ========================================= */
+
+        @keyframes paRotateBorder {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes paFadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(-15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes paFadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes paFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes paModalUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(.97);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* =========================================
+           RESPONSIVE DESIGN
+        ========================================= */
+
+        @media (max-width: 768px) {
+            .pa-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 15px;
+            }
+
+            .pa-card-image {
+                height: 140px;
+            }
+
+            .pa-page {
+                padding-top: 24px;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .pa-page {
+                width: 92%;
+                padding: 21px 0 30px;
+            }
+
+            .pa-hero {
+                margin-bottom: 18px;
+            }
+
+            .pa-hero h1 {
+                font-size: 24px;
+            }
+
+            .pa-hero p {
+                font-size: 11.5px;
+            }
+
+            .pa-notice {
+                padding: 12px;
+            }
+
+            .pa-tools {
+                padding: 12px;
+            }
+
+            .pa-filters {
+                gap: 7px;
+            }
+
+            .pa-filter {
+                padding: 7px 9px;
+                font-size: 10px;
+            }
+
+            .pa-section-heading h2 {
+                font-size: 16px;
+            }
+
+            /* MOBILE: ONE CARD AFTER ANOTHER */
+
+            .pa-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .pa-card {
+                display: grid;
+                grid-template-columns: 115px minmax(0, 1fr);
+                align-items: stretch;
+            }
+
+            .pa-card-image {
+                height: 100%;
+                min-height: 165px;
+            }
+
+            .pa-card-image img {
+                min-height: 165px;
+            }
+
+            .pa-card-content {
+                padding: 12px;
+            }
+
+            .pa-card-content h3 {
+                font-size: 13px;
+            }
+
+            .pa-card-content p {
+                font-size: 10.5px;
+                line-height: 1.65;
+                margin-bottom: 9px;
+            }
+
+            .pa-card-category {
+                font-size: 9px;
+                margin-bottom: 7px;
+            }
+
+            .pa-read-more {
+                font-size: 10px;
+            }
+
+            .pa-checklist {
+                padding: 15px;
+            }
+
+            .pa-checklist-grid {
+                grid-template-columns: 1fr;
+                gap: 11px;
+            }
+
+            .pa-emergency {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 15px;
+            }
+
+            .pa-emergency-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .pa-modal-box {
+                padding: 19px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .pa-page {
+                width: 93%;
+            }
+
+            .pa-card {
+                grid-template-columns: 95px minmax(0, 1fr);
+            }
+
+            .pa-card-image,
+            .pa-card-image img {
+                min-height: 175px;
+            }
+
+            .pa-card-content {
+                padding: 10px;
+            }
+
+            .pa-card-content h3 {
+                font-size: 12px;
+            }
+
+            .pa-card-content p {
+                font-size: 10px;
+            }
+
+            .pa-filter {
+                font-size: 9px;
+                padding: 7px 8px;
+            }
+
+            .pa-hero h1 {
+                font-size: 22px;
+            }
+        }
+
+        /* Respect reduced motion settings */
+
+        @media (prefers-reduced-motion: reduce) {
+            .pa-card-border::before {
+                animation: none;
+            }
+
+            .pa-reveal {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+
+            .pa-card-border,
+            .pa-card-image img {
+                transition: none;
+            }
+        }
+
+        /* =====================================
+   PUBLIC AWARENESS NAVBAR FIX
+===================================== */
+
+.report-navbar {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 15px;
+    min-height: 70px;
+}
+
+.report-navbar .logo {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 9px;
+    flex-shrink: 0;
+}
+
+.report-navbar .nav-actions {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 10px;
+}
+
+.report-navbar .nav-actions a {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 7px;
+    min-height: 38px;
+    padding: 9px 15px !important;
+    border-radius: 5px !important;
+    text-decoration: none !important;
+    font-family: inherit;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    white-space: nowrap;
+    transition: .25s ease;
+}
+
+.report-navbar .home-btn {
+    background: #fff0f5 !important;
+    color: #c7477b !important;
+    border: 1px solid #f3c9d9 !important;
+}
+
+.report-navbar .login-btn {
+    background: #ffffff !important;
+    color: #c7477b !important;
+    border: 1px solid #e9b8cc !important;
+}
+
+.report-navbar .volunteer-btn {
+    background: #d94f83 !important;
+    color: #ffffff !important;
+    border: 1px solid #d94f83 !important;
+}
+
+.report-navbar .home-btn:hover,
+.report-navbar .login-btn:hover {
+    background: #f9dce8 !important;
+    border-color: #d94f83 !important;
+    transform: translateY(-2px);
+}
+
+.report-navbar .volunteer-btn:hover {
+    background: #bd3c70 !important;
+    border-color: #bd3c70 !important;
+    transform: translateY(-2px);
+}
+
+
+/* =====================================
+   FOOTER ALIGNMENT FIX
+===================================== */
+
+.footer {
+    background: #F0E1E8 !important;
+    padding: 30px 0 0 !important;
+}
+
+.footer-container {
+    display: grid !important;
+    grid-template-columns: 1.4fr 1fr 1fr !important;
+    gap: 35px !important;
+    align-items: start !important;
+    padding-bottom: 25px !important;
+}
+
+.footer-col {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 9px !important;
+    min-width: 0;
+}
+
+.footer-col .logo {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    margin-bottom: 3px;
+}
+
+.footer-col h4 {
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    color: #35232d !important;
+    margin: 3px 0 5px !important;
+}
+
+.footer-col p {
+    max-width: 280px;
+    color: #75616c !important;
+    font-size: 11px !important;
+    line-height: 1.8 !important;
+    margin: 0 !important;
+}
+
+.footer-col > a:not(.logo) {
+    color: #75616c !important;
+    text-decoration: none !important;
+    font-size: 11px !important;
+    line-height: 1.6 !important;
+    transition: .2s;
+}
+
+.footer-col > a:not(.logo):hover {
+    color: #c7477b !important;
+    padding-left: 4px;
+}
+
+.footer-bottom {
+    border-top: 1px solid #dfc9d3 !important;
+    padding: 13px 4% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 10px;
+}
+
+.footer-bottom p {
+    color: #806b76 !important;
+    font-size: 10px !important;
+    margin: 0 !important;
+    line-height: 1.6 !important;
+}
+
+
+/* =====================================
+   MOBILE RESPONSIVE
+===================================== */
+
+@media (max-width: 550px) {
+
+    .report-navbar {
+        min-height: 62px;
+        gap: 7px;
+    }
+
+    .report-navbar .nav-actions {
+        gap: 5px;
+    }
+
+    .report-navbar .nav-actions a {
+        min-height: 34px;
+        padding: 7px 9px !important;
+        font-size: 10px !important;
+        gap: 4px;
+    }
+
+    .report-navbar .logo {
+        gap: 5px;
+        font-size: 14px;
+    }
+
+    .report-navbar .volunteer-btn i {
+        font-size: 9px;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 22px 15px !important;
+        padding-bottom: 20px !important;
+    }
+
+    .footer-col:first-child {
+        grid-column: 1 / -1;
+    }
+
+    .footer-col p {
+        max-width: 100%;
+    }
+
+    .footer-bottom {
+        flex-direction: column !important;
+        text-align: center;
+        gap: 5px;
+        padding: 12px 10px !important;
+    }
+}
+
+@media (max-width: 360px) {
+
+    .report-navbar .nav-actions {
+        gap: 4px;
+    }
+
+    .report-navbar .nav-actions a {
+        padding: 7px 6px !important;
+        font-size: 9px !important;
+    }
+
+    .report-navbar .logo {
+        font-size: 12px;
+    }
+
+    .footer-container {
+        gap: 18px 10px !important;
+    }
+}
+
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER - SAME AS HARASSMENT REPORT -->
+
+    <header class="header">
+        <nav class="navbar container report-navbar">
+
+            <a href="index.html" class="logo">
+                <span class="logo-icon">
+                    <i class="fa-solid fa-shield-heart"></i>
+                </span>
+                <span>SafeHer</span>
+            </a>
+
+            <div class="nav-actions">
+                <a href="index.html" class="home-btn">
+                    <i class="fa-solid fa-house"></i> Home
+                </a>
+
+                <a href="login.html" class="login-btn">
+                    Login
+                </a>
+
+                <a href="register.html" class="volunteer-btn">
+                    Get Volunteer
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+
+        </nav>
+    </header>
+
+
+    <main class="pa-page">
+
+        <!-- HERO -->
+
+        <section class="pa-hero">
+
+            <span class="pa-badge">
+                <i class="fa-solid fa-book-open"></i>
+                PUBLIC AWARENESS
+            </span>
+
+            <h1>Knowledge is Your First Protection</h1>
+
+            <p>
+                Learn how to recognize harassment, protect yourself,
+                stay safe in everyday situations, and help build a
+                safer and more supportive community.
+            </p>
+
+        </section>
+
+
+        <!-- NOTICE -->
+
+        <section class="pa-notice">
+
+            <div class="pa-notice-icon">
+                <i class="fa-solid fa-shield-heart"></i>
+            </div>
+
+            <div>
+                <strong>Stay Informed. Stay Safe.</strong>
+
+                <p>
+                    Awareness helps us recognize risks, understand
+                    our rights, and make informed decisions.
+                    Everyone deserves to live with safety and dignity.
+                </p>
+            </div>
+
+        </section>
+
+
+        <!-- SEARCH AND FILTER -->
+
+        <section class="pa-tools">
+
+            <div class="pa-search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="search"
+                    id="paSearch"
+                    placeholder="Search awareness topics..."
+                    aria-label="Search awareness topics"
+                >
+            </div>
+
+            <div class="pa-filters">
+
+                <button class="pa-filter active" data-filter="all">
+                    All Topics
+                </button>
+
+                <button class="pa-filter" data-filter="personal">
+                    Personal Safety
+                </button>
+
+                <button class="pa-filter" data-filter="digital">
+                    Digital Safety
+                </button>
+
+                <button class="pa-filter" data-filter="public">
+                    Public Places
+                </button>
+
+                <button class="pa-filter" data-filter="workplace">
+                    Workplace
+                </button>
+
+                <button class="pa-filter" data-filter="support">
+                    Support & Reporting
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- AWARENESS CARDS -->
+
+        <section class="pa-topics">
+
+            <div class="pa-section-heading">
+
+                <h2>Explore Awareness Topics</h2>
+
+                <span id="paCount">6 Topics</span>
+
+            </div>
+
+
+            <div class="pa-grid" id="paGrid">
+
+
+                <!-- CARD 1 -->
+
+                <div class="pa-card-border pa-reveal">
+
+                    <article class="pa-card" data-category="personal">
+
+                        <div class="pa-card-image">
+                            <img
+                                src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=600"
+                                alt="Personal safety awareness"
+                                loading="lazy"
+                            >
+                        </div>
+
+                        <div class="pa-card-content">
+
+                            <span class="pa-card-category">
+                                <i class="fa-solid fa-user-shield"></i>
+                                Personal Safety
+                            </span>
+
+                            <h3>Personal Safety & Awareness</h3>
+
+                            <p>
+                                Understand your surroundings and
+                                learn practical ways to protect yourself.
+                            </p>
+
+                            <button class="pa-read-more" data-topic="personal">
+                                Read More
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+
+                <!-- CARD 2 -->
+
+                <div class="pa-card-border pa-reveal">
+
+                    <article class="pa-card" data-category="digital">
+
+                        <div class="pa-card-image">
+                            <img
+                                src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600"
+                                alt="Digital safety"
+                                loading="lazy"
+                            >
+                        </div>
+
+                        <div class="pa-card-content">
+
+                            <span class="pa-card-category">
+                                <i class="fa-solid fa-lock"></i>
+                                Digital Safety
+                            </span>
+
+                            <h3>Online & Digital Safety</h3>
+
+                            <p>
+                                Protect your online identity, privacy,
+                                accounts, and personal information.
+                            </p>
+
+                            <button class="pa-read-more" data-topic="digital">
+                                Read More
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+
+                <!-- CARD 3 -->
+
+                <div class="pa-card-border pa-reveal">
+
+                    <article class="pa-card" data-category="public">
+
+                        <div class="pa-card-image">
+                            <img
+                                src="https://images.unsplash.com/photo-1519501025264-65ba15a82390?w=600"
+                                alt="Public place safety"
+                                loading="lazy"
+                            >
+                        </div>
+
+                        <div class="pa-card-content">
+
+                            <span class="pa-card-category">
+                                <i class="fa-solid fa-bus"></i>
+                                Public Places
+                            </span>
+
+                            <h3>Safety in Public Places</h3>
+
+                            <p>
+                                Learn about safer commuting and
+                                staying alert in public spaces.
+                            </p>
+
+                            <button class="pa-read-more" data-topic="public">
+                                Read More
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+
+                <!-- CARD 4 -->
+
+                <div class="pa-card-border pa-reveal">
+
+                    <article class="pa-card" data-category="workplace">
+
+                        <div class="pa-card-image">
+                            <img
+                                src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=600"
+                                alt="Workplace awareness"
+                                loading="lazy"
+                            >
+                        </div>
+
+                        <div class="pa-card-content">
+
+                            <span class="pa-card-category">
+                                <i class="fa-solid fa-building"></i>
+                                Workplace
+                            </span>
+
+                            <h3>Workplace & Education Safety</h3>
+
+                            <p>
+                                Understand harassment, personal boundaries,
+                                and respectful environments.
+                            </p>
+
+                            <button class="pa-read-more" data-topic="workplace">
+                                Read More
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+
+                <!-- CARD 5 -->
+
+                <div class="pa-card-border pa-reveal">
+
+                    <article class="pa-card" data-category="support">
+
+                        <div class="pa-card-image">
+                            <img
+                                src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=600"
+                                alt="Community support"
+                                loading="lazy"
+                            >
+                        </div>
+
+                        <div class="pa-card-content">
+
+                            <span class="pa-card-category">
+                                <i class="fa-solid fa-hand-holding-heart"></i>
+                                Support
+                            </span>
+
+                            <h3>How to Help Someone</h3>
+
+                            <p>
+                                Learn how to support someone experiencing
+                                harassment safely and respectfully.
+                            </p>
+
+                            <button class="pa-read-more" data-topic="support">
+                                Read More
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+
+                <!-- CARD 6 -->
+
+                <div class="pa-card-border pa-reveal">
+
+                    <article class="pa-card" data-category="support">
+
+                        <div class="pa-card-image">
+                            <img
+                                src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600"
+                                alt="Reporting and documentation"
+                                loading="lazy"
+                            >
+                        </div>
+
+                        <div class="pa-card-content">
+
+                            <span class="pa-card-category">
+                                <i class="fa-solid fa-file-circle-check"></i>
+                                Reporting
+                            </span>
+
+                            <h3>Reporting & Preserving Evidence</h3>
+
+                            <p>
+                                Learn how to document incidents and
+                                preserve relevant evidence.
+                            </p>
+
+                            <button class="pa-read-more" data-topic="reporting">
+                                Read More
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+
+            <!-- EMPTY RESULT -->
+
+            <div class="pa-empty" id="paEmpty">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <strong>No topics found</strong>
+                <p>Try another keyword or category.</p>
+            </div>
+
+        </section>
+
+
+        <!-- SAFETY CHECKLIST -->
+
+        <section class="pa-checklist">
+
+            <h2>
+                <i class="fa-solid fa-clipboard-check"
+                    style="color:var(--primary);margin-right:7px;"></i>
+
+                Your Everyday Safety Checklist
+            </h2>
+
+            <p>
+                Follow these simple habits to improve your everyday safety.
+            </p>
+
+            <div class="pa-checklist-grid">
+
+                <div class="pa-check-item">
+                    <i class="fa-solid fa-circle-check"></i>
+                    Keep trusted contacts easily accessible.
+                </div>
+
+                <div class="pa-check-item">
+                    <i class="fa-solid fa-circle-check"></i>
+                    Protect passwords and personal information.
+                </div>
+
+                <div class="pa-check-item">
+                    <i class="fa-solid fa-circle-check"></i>
+                    Stay aware of your surroundings while travelling.
+                </div>
+
+                <div class="pa-check-item">
+                    <i class="fa-solid fa-circle-check"></i>
+                    Preserve relevant evidence of harassment.
+                </div>
+
+                <div class="pa-check-item">
+                    <i class="fa-solid fa-circle-check"></i>
+                    Respect personal boundaries and consent.
+                </div>
+
+                <div class="pa-check-item">
+                    <i class="fa-solid fa-circle-check"></i>
+                    Seek trusted support whenever you feel unsafe.
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- EMERGENCY SUPPORT -->
+
+        <section class="pa-emergency">
+
+            <div class="pa-emergency-info">
+
+                <h3>
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    Need Immediate Help?
+                </h3>
+
+                <p>
+                    If you are in immediate danger in Bangladesh,
+                    contact the national emergency service.
+                </p>
+
+            </div>
+
+            <a href="tel:999" class="pa-emergency-btn">
+                <i class="fa-solid fa-phone"></i>
+                Call 999
+            </a>
+
+        </section>
+
+
+        <p class="pa-disclaimer">
+            This page provides general awareness information and is not
+            a substitute for professional, legal, or emergency assistance.
+        </p>
+
+    </main>
+
+
+    <!-- DETAILS MODAL -->
+
+    <div class="pa-modal" id="paModal">
+
+        <div class="pa-modal-box">
+
+            <button class="pa-modal-close"
+                id="paCloseModal"
+                aria-label="Close">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+            <div id="paModalContent"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER - SAME STYLE FAMILY -->
+
+    <footer class="footer">
+
+        <div class="container footer-container">
+
+            <div class="footer-col">
+
+                <a href="index.html" class="logo">
+
+                    <span class="logo-icon">
+                        <i class="fa-solid fa-shield-heart"></i>
+                    </span>
+
+                    <span>SafeHer</span>
+
+                </a>
+
+                <p>
+                    Building a safer and more supportive community
+                    through awareness, reporting, and empowerment.
+                </p>
+
+            </div>
+
+
+            <div class="footer-col">
+
+                <h4>Quick Links</h4>
+
+                <a href="index.html">Home</a>
+
+                <a href="harassment-report.html">
+                    Report Harassment
+                </a>
+
+                <a href="public-awareness.html">
+                    Public Awareness
+                </a>
+
+            </div>
+
+
+            <div class="footer-col">
+
+                <h4>Our Mission</h4>
+
+                <p>
+                    Promoting safety, dignity, equality,
+                    and awareness for everyone.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                &copy; <span id="paYear"></span> SafeHer.
+                All Rights Reserved.
+            </p>
+
+            <p>Your Safety, Our Priority.</p>
+
+        </div>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+
+    <script>
+        /* =========================================
+           SEARCH AND CATEGORY FILTER
+        ========================================= */
+
+        const paSearch = document.getElementById("paSearch");
+
+        const paFilters = document.querySelectorAll(".pa-filter");
+
+        const paCards = document.querySelectorAll(".pa-card-border");
+
+        const paEmpty = document.getElementById("paEmpty");
+
+        const paCount = document.getElementById("paCount");
+
+        let paSelectedCategory = "all";
+
+
+        function paFilterCards() {
+
+            const keyword = paSearch.value.toLowerCase().trim();
+
+            let visible = 0;
+
+            paCards.forEach(cardBorder => {
+
+                const card = cardBorder.querySelector(".pa-card");
+
+                const category = card.dataset.category;
+
+                const text = card.innerText.toLowerCase();
+
+                const categoryMatch =
+                    paSelectedCategory === "all" ||
+                    category === paSelectedCategory;
+
+                const searchMatch = text.includes(keyword);
+
+                const show = categoryMatch && searchMatch;
+
+                cardBorder.style.display = show ? "" : "none";
+
+                if (show) {
+                    visible++;
+                }
+
+            });
+
+            paEmpty.style.display = visible === 0 ? "block" : "none";
+
+            paCount.textContent =
+                visible + (visible === 1 ? " Topic" : " Topics");
+
+        }
+
+
+        paSearch.addEventListener("input", paFilterCards);
+
+
+        paFilters.forEach(button => {
+
+            button.addEventListener("click", () => {
+
+                paFilters.forEach(btn =>
+                    btn.classList.remove("active")
+                );
+
+                button.classList.add("active");
+
+                paSelectedCategory = button.dataset.filter;
+
+                paFilterCards();
+
+            });
+
+        });
+
+
+        /* =========================================
+           TOPIC DETAILS
+        ========================================= */
+
+        const paTopics = {
+
+            personal: {
+                title: "Personal Safety & Awareness",
+                intro: "Personal safety begins with understanding your surroundings, recognizing warning signs, and trusting your instincts.",
+                heading: "Practical Safety Tips",
+                points: [
+                    "Stay aware of your surroundings, especially in unfamiliar places.",
+                    "Let a trusted person know your travel plans when appropriate.",
+                    "Keep emergency contacts accessible.",
+                    "Move to a safer public place if a situation makes you uncomfortable.",
+                    "Remember that harassment is never the victim's fault."
+                ]
+            },
+
+            digital: {
+                title: "Online & Digital Safety",
+                intro: "Digital safety means protecting your personal information, accounts, identity, and well-being while using the internet.",
+                heading: "Protect Yourself Online",
+                points: [
+                    "Use strong and unique passwords for important accounts.",
+                    "Enable two-factor authentication whenever available.",
+                    "Avoid sharing sensitive personal information publicly.",
+                    "Do not open suspicious links or unknown attachments.",
+                    "Preserve relevant messages or screenshots if online harassment occurs."
+                ]
+            },
+
+            public: {
+                title: "Safety in Public Places",
+                intro: "Everyone deserves to feel safe in streets, public transportation, educational areas, and other shared spaces.",
+                heading: "Safer Travel Practices",
+                points: [
+                    "Plan your route and identify safe public places.",
+                    "Use trusted transportation options when possible.",
+                    "Keep your phone charged and emergency contacts accessible.",
+                    "Seek help from trusted people or appropriate authorities if threatened.",
+                    "If someone is in immediate danger, contact emergency services."
+                ]
+            },
+
+            workplace: {
+                title: "Workplace & Education Safety",
+                intro: "A safe workplace or educational institution should respect dignity, personal boundaries, and equal treatment.",
+                heading: "Know Your Boundaries",
+                points: [
+                    "Recognize unwanted comments, touching, intimidation, and repeated inappropriate behaviour.",
+                    "Understand the reporting procedures available at your institution.",
+                    "Keep a factual record of incidents when safe to do so.",
+                    "Reach out to a trusted teacher, supervisor, or appropriate support authority.",
+                    "Support respectful and harassment-free environments."
+                ]
+            },
+
+            support: {
+                title: "How to Help Someone",
+                intro: "Supporting someone experiencing harassment requires care, respect, and attention to their safety and choices.",
+                heading: "Ways to Provide Support",
+                points: [
+                    "Listen calmly and take their concerns seriously.",
+                    "Avoid blaming, judging, or pressuring them.",
+                    "Ask what kind of support they need.",
+                    "Help them reach a safe place or trusted support person if they want.",
+                    "Do not confront a threatening person if doing so could increase danger."
+                ]
+            },
+
+            reporting: {
+                title: "Reporting & Preserving Evidence",
+                intro: "Documenting an incident can help someone explain what happened when seeking support or making a report.",
+                heading: "Important Steps",
+                points: [
+                    "Write down the date, time, location, and a factual description of the incident.",
+                    "Preserve relevant messages, emails, screenshots, or other records.",
+                    "Keep original files where possible and avoid editing evidence.",
+                    "Store sensitive information securely and share it only with trusted or appropriate authorities.",
+                    "Use the SafeHer Harassment Report page to access the reporting interface."
+                ]
+            }
+
+        };
+
+
+        const paModal = document.getElementById("paModal");
+
+        const paModalContent =
+            document.getElementById("paModalContent");
+
+
+        document.querySelectorAll(".pa-read-more").forEach(button => {
+
+            button.addEventListener("click", () => {
+
+                const topic = paTopics[button.dataset.topic];
+
+                if (!topic) return;
+
+                const list = topic.points
+                    .map(point => `<li>${point}</li>`)
+                    .join("");
+
+                paModalContent.innerHTML = `
+
+                    <span class="pa-card-category">
+                        <i class="fa-solid fa-shield-heart"></i>
+                        SAFEHER AWARENESS GUIDE
+                    </span>
+
+                    <h2>${topic.title}</h2>
+
+                    <p>${topic.intro}</p>
+
+                    <h4>${topic.heading}</h4>
+
+                    <ul>${list}</ul>
+
+                    <p>
+                        <strong>Remember:</strong>
+                        Your safety, dignity, and choices matter.
+                        Seek trusted support whenever you need it.
+                    </p>
+
+                `;
+
+                paModal.classList.add("show");
+
+                document.body.style.overflow = "hidden";
+
+            });
+
+        });
+
+
+        function paCloseDetails() {
+
+            paModal.classList.remove("show");
+
+            document.body.style.overflow = "";
+
+        }
+
+
+        document.getElementById("paCloseModal")
+            .addEventListener("click", paCloseDetails);
+
+
+        paModal.addEventListener("click", event => {
+
+            if (event.target === paModal) {
+                paCloseDetails();
+            }
+
+        });
+
+
+        document.addEventListener("keydown", event => {
+
+            if (event.key === "Escape") {
+                paCloseDetails();
+            }
+
+        });
+
+
+        /* =========================================
+           SCROLL REVEAL ANIMATION
+        ========================================= */
+
+        const paRevealItems =
+            document.querySelectorAll(".pa-reveal");
+
+
+        if ("IntersectionObserver" in window) {
+
+            const paObserver = new IntersectionObserver((entries) => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add("visible");
+
+                        paObserver.unobserve(entry.target);
+
+                    }
+
+                });
+
+            }, {
+                threshold: 0.12
+            });
+
+
+            paRevealItems.forEach((item, index) => {
+
+                item.style.transitionDelay =
+                    (index % 3) * 100 + "ms";
+
+                paObserver.observe(item);
+
+            });
+
+        } else {
+
+            paRevealItems.forEach(item =>
+                item.classList.add("visible")
+            );
+
+        }
+
+
+        /* =========================================
+           CURRENT YEAR
+        ========================================= */
+
+        document.getElementById("paYear").textContent =
+            new Date().getFullYear();
+
+    </script>
+
+</body>
+</html>

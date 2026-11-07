@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Emergency Support | SafeHer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .support-page,
+        .support-page * {
+            box-sizing: border-box;
+        }
+
+        .support-navbar {
+            min-height: 68px;
+            padding-top: 9px;
+            padding-bottom: 9px;
+        }
+
+        .support-navbar .nav-menu {
+            display: none !important;
+        }
+
+        .support-navbar .nav-actions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 9px;
+        }
+
+        .support-navbar .nav-actions a {
+            min-width: 88px;
+            height: 39px;
+            padding: 0 15px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all .2s ease;
+        }
+
+        .support-navbar .home-btn {
+            background: #F7EAF0;
+            color: #964365;
+            border: 1px solid #E8CEDA;
+        }
+
+        .support-navbar .login-btn {
+            background: #FFFFFF;
+            color: #964365;
+            border: 1px solid #B85C83;
+        }
+
+        .support-navbar .volunteer-btn {
+            background: #B85C83;
+            color: #FFFFFF;
+            border: 1px solid #B85C83;
+        }
+
+        .support-navbar .nav-actions a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(184, 92, 131, .13);
+        }
+
+        .support-page {
+            background: var(--background);
+            padding: 25px 0 35px;
+        }
+
+        .support-container {
+            width: min(92%, 740px);
+            margin: auto;
+        }
+
+        .support-heading {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .support-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 6px 12px;
+            border-radius: 4px;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            font-size: 10px;
+            font-weight: 700;
+            margin-bottom: 9px;
+        }
+
+        .support-heading h1 {
+            font-size: clamp(25px, 4vw, 34px);
+            color: var(--dark);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 6px;
+        }
+
+        .support-heading h1 span {
+            color: var(--primary);
+        }
+
+        .support-heading p {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.6;
+            max-width: 530px;
+            margin: auto;
+        }
+
+        /* EMERGENCY ALERT */
+
+        .emergency-alert {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 13px 15px;
+            background: #FFF0F3;
+            border: 1px solid #F4D3DE;
+            border-left: 3px solid #D94B67;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .emergency-alert > i {
+            color: #D94B67;
+            font-size: 19px;
+            margin-top: 2px;
+        }
+
+        .emergency-alert h3 {
+            color: var(--dark);
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+
+        .emergency-alert p {
+            color: var(--text);
+            font-size: 10px;
+            line-height: 1.6;
+        }
+
+        /* MAIN EMERGENCY CARD */
+
+        .emergency-main-card {
+            background: #FFFFFF;
+            border: 1px solid #F0CCD8;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            margin-bottom: 16px;
+        }
+
+        .emergency-main-icon {
+            width: 55px;
+            height: 55px;
+            display: grid;
+            place-items: center;
+            margin: 0 auto 10px;
+            border-radius: 50%;
+            background: #FFF0F3;
+            color: #D94B67;
+            font-size: 23px;
+        }
+
+        .emergency-main-card h2 {
+            color: var(--dark);
+            font-size: 18px;
+            margin-bottom: 6px;
+        }
+
+        .emergency-main-card p {
+            max-width: 480px;
+            margin: 0 auto 13px;
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+        .emergency-number {
+            display: block;
+            color: #D94B67;
+            font-size: 35px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .emergency-call-btn {
+            min-height: 40px;
+            padding: 0 23px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            border-radius: 4px;
+            background: #D94B67;
+            color: #FFFFFF;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            transition: all .2s ease;
+        }
+
+        .emergency-call-btn:hover {
+            background: #B92F50;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(217, 75, 103, .2);
+        }
+
+        .emergency-free-note {
+            margin-top: 9px;
+            color: var(--muted);
+            font-size: 9px;
+        }
+
+        /* SECTION CARD */
+
+        .support-card {
+            background: #FFFFFF;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 18px 21px;
+            box-shadow: var(--shadow);
+            margin-bottom: 16px;
+        }
+
+        .support-section-heading {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding-bottom: 10px;
+            margin-bottom: 13px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .support-section-icon {
+            width: 32px;
+            height: 32px;
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            border-radius: 5px;
+            background: var(--primary-light);
+            color: var(--primary);
+            font-size: 13px;
+        }
+
+        .support-section-heading h2 {
+            color: var(--dark);
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .support-section-heading p {
+            color: var(--muted);
+            font-size: 10px;
+            margin-top: 2px;
+        }
+
+        /* HELPLINE GRID */
+
+        .helpline-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 11px;
+        }
+
+        .helpline-item {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            min-width: 0;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            background: #FFFBFD;
+        }
+
+        .helpline-icon {
+            width: 35px;
+            height: 35px;
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            border-radius: 5px;
+            background: var(--primary-light);
+            color: var(--primary);
+            font-size: 14px;
+        }
+
+        .helpline-info {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .helpline-info h3 {
+            color: var(--dark);
+            font-size: 11px;
+            margin-bottom: 3px;
+        }
+
+        .helpline-info p {
+            color: var(--muted);
+            font-size: 9px;
+            line-height: 1.5;
+            margin-bottom: 5px;
+        }
+
+        .helpline-info strong {
+            display: block;
+            color: var(--primary-dark);
+            font-size: 17px;
+            letter-spacing: .5px;
+        }
+
+        .helpline-call {
+            width: 29px;
+            height: 29px;
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            background: var(--primary);
+            color: #FFFFFF;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 11px;
+            transition: .2s;
+        }
+
+        .helpline-call:hover {
+            background: var(--primary-dark);
+        }
+
+        /* SAFETY STEPS */
+
+        .safety-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+        }
+
+        .safety-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .step-number {
+            width: 25px;
+            height: 25px;
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            border-radius: 4px;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        .safety-step h3 {
+            color: var(--dark);
+            font-size: 11px;
+            margin-bottom: 3px;
+        }
+
+        .safety-step p {
+            color: var(--muted);
+            font-size: 10px;
+            line-height: 1.6;
+        }
+
+        /* IMPORTANT NOTE */
+
+        .support-note {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 11px 13px;
+            background: #FFF8FA;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            margin-top: 13px;
+        }
+
+        .support-note i {
+            color: var(--primary);
+            font-size: 14px;
+            margin-top: 2px;
+        }
+
+        .support-note p {
+            color: var(--text);
+            font-size: 10px;
+            line-height: 1.6;
+        }
+
+        /* FOOTER */
+
+        .support-footer {
+            background: #F0E1E8;
+            color: #554451;
+            margin-top: 25px;
+            padding: 22px 0 0;
+        }
+
+        .support-footer-container {
+            width: min(92%, 1240px);
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1.3fr 1fr 1.1fr;
+            gap: 25px;
+            padding-bottom: 18px;
+        }
+
+        .support-footer-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #29152F;
+            font-size: 19px;
+            font-weight: 800;
+            text-decoration: none;
+            margin-bottom: 8px;
+        }
+
+        .support-footer-icon {
+            width: 32px;
+            height: 32px;
+            display: grid;
+            place-items: center;
+            color: white;
+            background: linear-gradient(135deg, #B85C83, #964365);
+            border-radius: 5px;
+        }
+
+        .support-footer-brand p,
+        .support-footer-note p {
+            font-size: 11px;
+            line-height: 1.6;
+            color: #776471;
+            max-width: 380px;
+        }
+
+        .support-footer-links h3,
+        .support-footer-note h3 {
+            color: #29152F;
+            font-size: 13px;
+            margin-bottom: 9px;
+        }
+
+        .support-footer-links {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 7px;
+        }
+
+        .support-footer-links a {
+            color: #776471;
+            text-decoration: none;
+            font-size: 11px;
+            transition: .2s;
+        }
+
+        .support-footer-links a:hover {
+            color: #B85C83;
+            transform: translateX(3px);
+        }
+
+        .support-footer-bottom {
+            border-top: 1px solid rgba(184, 92, 131, .18);
+            padding: 10px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .support-footer-bottom p {
+            color: #887784;
+            font-size: 10px;
+            margin: 0;
+        }
+
+        .support-footer-bottom i {
+            color: #B85C83;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 768px) {
+            .support-container {
+                width: 94%;
+            }
+
+            .support-card {
+                padding: 17px;
+            }
+
+            .support-footer-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 18px;
+            }
+
+            .support-footer-brand {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .support-navbar {
+                min-height: 60px;
+                padding: 8px 0;
+            }
+
+            .support-navbar .nav-actions {
+                gap: 5px;
+            }
+
+            .support-navbar .nav-actions a {
+                min-width: auto;
+                height: 34px;
+                padding: 0 9px;
+                font-size: 10px;
+                gap: 4px;
+            }
+
+            .support-page {
+                padding: 20px 0 25px;
+            }
+
+            .support-container {
+                width: 93%;
+            }
+
+            .support-heading {
+                margin-bottom: 15px;
+            }
+
+            .support-heading h1 {
+                font-size: 26px;
+            }
+
+            .support-heading p {
+                font-size: 11px;
+            }
+
+            .emergency-alert {
+                padding: 10px;
+                margin-bottom: 12px;
+            }
+
+            .emergency-main-card {
+                padding: 17px 12px;
+            }
+
+            .emergency-main-card h2 {
+                font-size: 16px;
+            }
+
+            .emergency-number {
+                font-size: 32px;
+            }
+
+            .support-card {
+                padding: 14px 12px;
+                border-radius: 6px;
+            }
+
+            .helpline-grid {
+                grid-template-columns: 1fr;
+                gap: 9px;
+            }
+
+            .support-footer {
+                margin-top: 20px;
+                padding-top: 18px;
+            }
+
+            .support-footer-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 18px 12px;
+                padding-bottom: 15px;
+            }
+
+            .support-footer-brand,
+            .support-footer-note {
+                grid-column: 1 / -1;
+            }
+
+            .support-footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .support-navbar .nav-actions {
+                gap: 4px;
+            }
+
+            .support-navbar .nav-actions a {
+                padding: 0 6px;
+                font-size: 9px;
+            }
+
+            .support-heading h1 {
+                font-size: 23px;
+            }
+
+            .support-card {
+                padding: 12px 9px;
+            }
+
+            .support-footer-container {
+                grid-template-columns: 1fr;
+            }
+
+            .support-footer-brand,
+            .support-footer-note {
+                grid-column: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <header class="header">
+        <nav class="navbar container support-navbar">
+
+            <a href="index.html" class="logo">
+                <span class="logo-icon">
+                    <i class="fa-solid fa-shield-heart"></i>
+                </span>
+                <span>SafeHer</span>
+            </a>
+
+            <div class="nav-actions">
+
+                <a href="index.html" class="home-btn">
+                    <i class="fa-solid fa-house"></i>
+                    Home
+                </a>
+
+                <a href="login.html" class="login-btn">
+                    Login
+                </a>
+
+                <a href="register.html" class="volunteer-btn">
+                    Get Volunteer
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- EMERGENCY SUPPORT PAGE -->
+
+    <main class="support-page">
+
+        <div class="support-container">
+
+            <!-- HEADING -->
+
+            <div class="support-heading">
+
+                <span class="support-badge">
+                    <i class="fa-solid fa-shield-heart"></i>
+                    SAFEHER EMERGENCY SUPPORT
+                </span>
+
+                <h1>
+                    Emergency <span>Support</span>
+                </h1>
+
+                <p>
+                    You are not alone. Find important emergency contacts
+                    and practical safety guidance when you need help.
+                </p>
+
+            </div>
+
+
+            <!-- EMERGENCY NOTICE -->
+
+            <div class="emergency-alert">
+
+                <i class="fa-solid fa-triangle-exclamation"></i>
+
+                <div>
+                    <h3>Are You in Immediate Danger?</h3>
+
+                    <p>
+                        Move to a safer place if possible and contact
+                        emergency services. Do not put yourself at further
+                        risk to seek help.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <!-- MAIN EMERGENCY CALL -->
+
+            <section class="emergency-main-card">
+
+                <div class="emergency-main-icon">
+                    <i class="fa-solid fa-phone-volume"></i>
+                </div>
+
+                <h2>National Emergency Service</h2>
+
+                <p>
+                    Contact Bangladesh National Emergency Service for
+                    police, fire service or ambulance assistance.
+                </p>
+
+                <span class="emergency-number">999</span>
+
+                <a href="tel:999" class="emergency-call-btn">
+                    <i class="fa-solid fa-phone"></i>
+                    Call Emergency Services
+                </a>
+
+                <p class="emergency-free-note">
+                    <i class="fa-solid fa-circle-info"></i>
+                    Available for emergency assistance in Bangladesh.
+                </p>
+
+            </section>
+
+
+            <!-- IMPORTANT HELPLINES -->
+
+            <section class="support-card">
+
+                <div class="support-section-heading">
+
+                    <div class="support-section-icon">
+                        <i class="fa-solid fa-address-book"></i>
+                    </div>
+
+                    <div>
+                        <h2>Important Helpline Numbers</h2>
+                        <p>Choose the support service you need.</p>
+                    </div>
+
+                </div>
+
+
+                <div class="helpline-grid">
+
+                    <!-- WOMEN AND CHILDREN -->
+
+                    <div class="helpline-item">
+
+                        <div class="helpline-icon">
+                            <i class="fa-solid fa-hand-holding-heart"></i>
+                        </div>
+
+                        <div class="helpline-info">
+                            <h3>Women & Children Support</h3>
+                            <p>Violence prevention and support helpline.</p>
+                            <strong>109</strong>
+                        </div>
+
+                        <a href="tel:109"
+                           class="helpline-call"
+                           aria-label="Call 109">
+                            <i class="fa-solid fa-phone"></i>
+                        </a>
+
+                    </div>
+
+
+                    <!-- CHILD HELPLINE -->
+
+                    <div class="helpline-item">
+
+                        <div class="helpline-icon">
+                            <i class="fa-solid fa-child-reaching"></i>
+                        </div>
+
+                        <div class="helpline-info">
+                            <h3>Child Helpline</h3>
+                            <p>Support for children facing abuse or danger.</p>
+                            <strong>1098</strong>
+                        </div>
+
+                        <a href="tel:1098"
+                           class="helpline-call"
+                           aria-label="Call 1098">
+                            <i class="fa-solid fa-phone"></i>
+                        </a>
+
+                    </div>
+
+
+                    <!-- LEGAL AID -->
+
+                    <div class="helpline-item">
+
+                        <div class="helpline-icon">
+                            <i class="fa-solid fa-scale-balanced"></i>
+                        </div>
+
+                        <div class="helpline-info">
+                            <h3>Government Legal Aid</h3>
+                            <p>Government legal assistance and advice.</p>
+                            <strong>16430</strong>
+                        </div>
+
+                        <a href="tel:16430"
+                           class="helpline-call"
+                           aria-label="Call 16430">
+                            <i class="fa-solid fa-phone"></i>
+                        </a>
+
+                    </div>
+
+
+                    <!-- EMERGENCY -->
+
+                    <div class="helpline-item">
+
+                        <div class="helpline-icon">
+                            <i class="fa-solid fa-truck-medical"></i>
+                        </div>
+
+                        <div class="helpline-info">
+                            <h3>National Emergency</h3>
+                            <p>Police, fire service and ambulance.</p>
+                            <strong>999</strong>
+                        </div>
+
+                        <a href="tel:999"
+                           class="helpline-call"
+                           aria-label="Call 999">
+                            <i class="fa-solid fa-phone"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- SAFETY GUIDANCE -->
+
+            <section class="support-card">
+
+                <div class="support-section-heading">
+
+                    <div class="support-section-icon">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+
+                    <div>
+                        <h2>What to Do in an Emergency</h2>
+                        <p>Follow these basic safety steps when possible.</p>
+                    </div>
+
+                </div>
+
+
+                <div class="safety-steps">
+
+                    <div class="safety-step">
+
+                        <div class="step-number">01</div>
+
+                        <div>
+                            <h3>Move to a Safer Place</h3>
+                            <p>
+                                Move toward a public, well-lit or secure
+                                location if it is safe to do so.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="safety-step">
+
+                        <div class="step-number">02</div>
+
+                        <div>
+                            <h3>Call Emergency Services</h3>
+                            <p>
+                                Call 999 if you face immediate danger
+                                or urgently need police, fire or ambulance help.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="safety-step">
+
+                        <div class="step-number">03</div>
+
+                        <div>
+                            <h3>Contact Someone You Trust</h3>
+                            <p>
+                                Inform a trusted family member, friend
+                                or nearby person about your situation.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="safety-step">
+
+                        <div class="step-number">04</div>
+
+                        <div>
+                            <h3>Share Your Location Safely</h3>
+                            <p>
+                                If possible, share your location with
+                                someone you trust so they can find you.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="safety-step">
+
+                        <div class="step-number">05</div>
+
+                        <div>
+                            <h3>Seek Further Support</h3>
+                            <p>
+                                Contact the relevant helpline for
+                                additional guidance and assistance.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="support-note">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <p>
+                        Your safety comes first. Only share personal
+                        information with trusted people or authorized
+                        emergency service providers.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer class="support-footer">
+
+        <div class="support-footer-container">
+
+            <div class="support-footer-brand">
+
+                <a href="index.html" class="support-footer-logo">
+
+                    <span class="support-footer-icon">
+                        <i class="fa-solid fa-shield-heart"></i>
+                    </span>
+
+                    SafeHer
+
+                </a>
+
+                <p>
+                    Empowering women with safety, support and awareness.
+                    Together, we can create a safer community for everyone.
+                </p>
+
+            </div>
+
+
+            <div class="support-footer-links">
+
+                <h3>Emergency Support</h3>
+
+                <a href="index.html">Home</a>
+                <a href="harassment-report.html">Harassment Report</a>
+                <a href="emergency-support.html">Emergency Support</a>
+                <a href="index.html#features">Safety Features</a>
+
+            </div>
+
+
+            <div class="support-footer-note">
+
+                <h3>You Are Not Alone</h3>
+
+                <p>
+                    Help is available. Reach out to emergency services
+                    or someone you trust when you need support.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="support-footer-bottom">
+
+            <p>
+                &copy; <span id="currentYear"></span> SafeHer.
+                All Rights Reserved.
+            </p>
+
+            <p>
+                Designed for a Safer Tomorrow
+                <i class="fa-solid fa-heart"></i>
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- EXISTING JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+
+    <!-- PAGE JAVASCRIPT -->
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            document.getElementById("currentYear").textContent =
+                new Date().getFullYear();
+
+        });
+    </script>
+
+</body>
+</html>

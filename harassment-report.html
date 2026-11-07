@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Harassment Report | SafeHer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* =====================================
+           REPORT PAGE BASE
+        ===================================== */
+
+        .report-page,
+        .report-page * {
+            box-sizing: border-box;
+        }
+
+        .report-page {
+            background: var(--background);
+            padding: 25px 0 35px;
+            min-height: auto;
+        }
+
+        .report-container {
+            width: min(92%, 740px);
+            margin: auto;
+        }
+
+        /* =====================================
+           PROFESSIONAL RECTANGULAR NAVBAR
+        ===================================== */
+
+        .report-navbar {
+            min-height: 68px;
+            padding-top: 9px;
+            padding-bottom: 9px;
+        }
+
+        .report-navbar .nav-menu {
+            display: none !important;
+        }
+
+        .report-navbar .nav-actions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 9px;
+        }
+
+        .report-navbar .nav-actions a {
+            min-width: 88px;
+            height: 39px;
+            padding: 0 15px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 600;
+            text-decoration: none;
+
+            transition: all .2s ease;
+        }
+
+        .report-navbar .home-btn {
+            background: #F7EAF0;
+            color: #964365;
+            border: 1px solid #E8CEDA;
+        }
+
+        .report-navbar .login-btn {
+            background: #FFFFFF;
+            color: #964365;
+            border: 1px solid #B85C83;
+        }
+
+        .report-navbar .volunteer-btn {
+            background: #B85C83;
+            color: #FFFFFF;
+            border: 1px solid #B85C83;
+        }
+
+        .report-navbar .nav-actions a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(184, 92, 131, .13);
+        }
+
+        .report-navbar .home-btn:hover,
+        .report-navbar .login-btn:hover {
+            background: #F1DCE6;
+        }
+
+        .report-navbar .volunteer-btn:hover {
+            background: #964365;
+            border-color: #964365;
+        }
+
+        /* =====================================
+           REPORT HEADING
+        ===================================== */
+
+        .report-heading {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .report-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 6px 12px;
+            border-radius: 4px;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            font-size: 10px;
+            font-weight: 700;
+            margin-bottom: 9px;
+        }
+
+        .report-heading h1 {
+            font-size: clamp(25px, 4vw, 34px);
+            color: var(--dark);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 6px;
+        }
+
+        .report-heading h1 span {
+            color: var(--primary);
+        }
+
+        .report-heading p {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.6;
+            max-width: 530px;
+            margin: auto;
+        }
+
+        /* =====================================
+           SAFETY NOTICE
+        ===================================== */
+
+        .report-notice {
+            display: flex;
+            align-items: flex-start;
+            gap: 11px;
+            padding: 11px 14px;
+
+            background: #FFF0F3;
+            border: 1px solid #F4D3DE;
+            border-left: 3px solid var(--primary);
+            border-radius: 5px;
+
+            margin-bottom: 15px;
+        }
+
+        .report-notice > i {
+            color: var(--primary);
+            font-size: 17px;
+            margin-top: 2px;
+        }
+
+        .report-notice h3 {
+            color: var(--dark);
+            font-size: 12px;
+            margin-bottom: 3px;
+        }
+
+        .report-notice p {
+            color: var(--text);
+            font-size: 10px;
+            line-height: 1.6;
+        }
+
+        /* =====================================
+           COMPACT REPORT CARD
+        ===================================== */
+
+        .report-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 18px 21px;
+            box-shadow: var(--shadow);
+        }
+
+        .report-section {
+            margin-bottom: 19px;
+        }
+
+        .report-section:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Section Heading */
+
+        .report-section-heading {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+
+            padding-bottom: 9px;
+            margin-bottom: 12px;
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .report-section-icon {
+            width: 32px;
+            height: 32px;
+            flex-shrink: 0;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 5px;
+            background: var(--primary-light);
+            color: var(--primary);
+            font-size: 13px;
+        }
+
+        .report-section-heading h2 {
+            color: var(--dark);
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .report-section-heading p {
+            color: var(--muted);
+            font-size: 10px;
+            margin-top: 2px;
+        }
+
+        /* =====================================
+           FORM FIELDS
+        ===================================== */
+
+        .report-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 11px 14px;
+        }
+
+        .report-field {
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .report-field.full {
+            grid-column: 1 / -1;
+        }
+
+        .report-field label {
+            color: var(--dark);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .report-field label span {
+            color: var(--danger);
+        }
+
+        .report-field input,
+        .report-field select,
+        .report-field textarea {
+            width: 100%;
+            min-width: 0;
+
+            border: 1px solid var(--border);
+            border-radius: 4px;
+
+            background: #FFFBFD;
+            color: var(--dark);
+
+            padding: 8px 10px;
+
+            font-family: inherit;
+            font-size: 11px;
+
+            outline: none;
+            transition: all .2s ease;
+        }
+
+        .report-field input,
+        .report-field select {
+            height: 36px;
+            min-height: 36px;
+        }
+
+        .report-field textarea {
+            height: 75px;
+            min-height: 75px;
+            resize: vertical;
+            line-height: 1.6;
+        }
+
+        .report-field input:focus,
+        .report-field select:focus,
+        .report-field textarea:focus {
+            border-color: var(--primary);
+            background: #FFFFFF;
+            box-shadow: 0 0 0 2px rgba(184, 92, 131, .09);
+        }
+
+        .report-field input::placeholder,
+        .report-field textarea::placeholder {
+            color: #B5A5AF;
+        }
+
+        .report-hint {
+            color: var(--muted);
+            font-size: 9px;
+            line-height: 1.5;
+        }
+
+        /* =====================================
+           ANONYMOUS OPTION
+        ===================================== */
+
+        .anonymous-option {
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+
+            padding: 10px 12px;
+            margin-top: 12px;
+
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            background: #FFF8FA;
+
+            cursor: pointer;
+        }
+
+        .anonymous-option input {
+            margin-top: 3px;
+            accent-color: var(--primary);
+        }
+
+        .anonymous-option strong {
+            display: block;
+            color: var(--dark);
+            font-size: 11px;
+            margin-bottom: 3px;
+        }
+
+        .anonymous-option small {
+            color: var(--muted);
+            font-size: 9px;
+            line-height: 1.5;
+        }
+
+        /* =====================================
+           IMAGE UPLOAD
+        ===================================== */
+
+        .report-upload {
+            display: block;
+            padding: 16px 12px;
+            text-align: center;
+
+            border: 1px dashed #DDB2C5;
+            border-radius: 5px;
+            background: #FFFAFC;
+
+            cursor: pointer;
+            transition: all .2s ease;
+        }
+
+        .report-upload:hover,
+        .report-upload.dragging {
+            border-color: var(--primary);
+            background: #FFF3F7;
+        }
+
+        .report-upload > i {
+            color: var(--primary);
+            font-size: 22px;
+            margin-bottom: 6px;
+        }
+
+        .report-upload h3 {
+            color: var(--dark);
+            font-size: 11px;
+            margin-bottom: 4px;
+        }
+
+        .report-upload p {
+            color: var(--muted);
+            font-size: 9px;
+        }
+
+        .report-upload span {
+            display: inline-block;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 10px;
+            margin-top: 6px;
+        }
+
+        #evidenceFiles {
+            display: none;
+        }
+
+        .image-preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .preview-item {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            background: white;
+        }
+
+        .preview-item img {
+            display: block;
+            width: 100%;
+            height: 75px;
+            object-fit: cover;
+        }
+
+        .preview-item p {
+            padding: 5px;
+            color: var(--text);
+            font-size: 9px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .remove-image {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+
+            width: 22px;
+            height: 22px;
+
+            border: none;
+            border-radius: 3px;
+
+            background: var(--danger);
+            color: white;
+            cursor: pointer;
+        }
+
+        /* =====================================
+           SUBMIT AREA
+        ===================================== */
+
+        .report-submit-area {
+            padding-top: 13px;
+            margin-top: 17px;
+            border-top: 1px solid var(--border);
+        }
+
+        .report-consent {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+
+            margin-bottom: 12px;
+
+            color: var(--text);
+            font-size: 10px;
+            line-height: 1.6;
+        }
+
+        .report-consent input {
+            margin-top: 3px;
+            accent-color: var(--primary);
+        }
+
+        .report-submit {
+            width: 100%;
+            min-height: 39px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+
+            border: none;
+            border-radius: 4px;
+
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 700;
+
+            cursor: pointer;
+            transition: all .2s ease;
+        }
+
+        .report-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 13px rgba(184, 92, 131, .2);
+        }
+
+        .report-message {
+            display: none;
+            padding: 11px;
+            margin-top: 12px;
+            border-radius: 5px;
+            font-size: 10px;
+            line-height: 1.6;
+        }
+
+        .report-message.success {
+            display: block;
+            color: #247456;
+            background: #EAF7F1;
+            border: 1px solid #BFE6D4;
+        }
+
+        .report-bottom-note {
+            text-align: center;
+            color: var(--muted);
+            font-size: 9px;
+            line-height: 1.6;
+            margin-top: 10px;
+        }
+
+        .report-bottom-note i {
+            color: var(--primary);
+            margin-right: 4px;
+        }
+
+        /* =====================================
+           COMPACT FOOTER
+        ===================================== */
+
+        .report-footer {
+            background: #F0E1E8;
+            color: #554451;
+            margin-top: 25px;
+            padding: 22px 0 0;
+        }
+
+        .report-footer-container {
+            width: min(92%, 1240px);
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: 1.3fr 1fr 1.1fr;
+            gap: 25px;
+
+            padding-bottom: 18px;
+        }
+
+        .report-footer-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            color: #29152F;
+            font-size: 19px;
+            font-weight: 800;
+            text-decoration: none;
+
+            margin-bottom: 8px;
+        }
+
+        .report-footer-icon {
+            width: 32px;
+            height: 32px;
+
+            display: grid;
+            place-items: center;
+
+            color: white;
+            background: linear-gradient(135deg, #B85C83, #964365);
+            border-radius: 5px;
+        }
+
+        .report-footer-brand p,
+        .report-footer-note p {
+            font-size: 11px;
+            line-height: 1.6;
+            color: #776471;
+            max-width: 380px;
+        }
+
+        .report-footer-links h3,
+        .report-footer-note h3 {
+            color: #29152F;
+            font-size: 13px;
+            margin-bottom: 9px;
+        }
+
+        .report-footer-links {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 7px;
+        }
+
+        .report-footer-links a {
+            color: #776471;
+            text-decoration: none;
+            font-size: 11px;
+            transition: all .2s ease;
+        }
+
+        .report-footer-links a:hover {
+            color: #B85C83;
+            transform: translateX(3px);
+        }
+
+        .report-footer-bottom {
+            border-top: 1px solid rgba(184, 92, 131, .18);
+
+            padding: 10px 5%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .report-footer-bottom p {
+            color: #887784;
+            font-size: 10px;
+            margin: 0;
+        }
+
+        .report-footer-bottom i {
+            color: #B85C83;
+        }
+
+        /* =====================================
+           TABLET RESPONSIVE
+        ===================================== */
+
+        @media (max-width: 768px) {
+
+            .report-container {
+                width: 94%;
+            }
+
+            .report-card {
+                padding: 17px;
+            }
+
+            .report-footer-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 18px;
+            }
+
+            .report-footer-brand {
+                grid-column: 1 / -1;
+            }
+        }
+
+        /* =====================================
+           MOBILE RESPONSIVE
+        ===================================== */
+
+        @media (max-width: 550px) {
+
+            .report-navbar {
+                min-height: 60px;
+                padding: 8px 0;
+            }
+
+            .report-navbar .nav-actions {
+                gap: 5px;
+            }
+
+            .report-navbar .nav-actions a {
+                min-width: auto;
+                height: 34px;
+                padding: 0 9px;
+                font-size: 10px;
+                gap: 4px;
+            }
+
+            .report-page {
+                padding: 20px 0 25px;
+            }
+
+            .report-container {
+                width: 93%;
+            }
+
+            .report-heading {
+                margin-bottom: 15px;
+            }
+
+            .report-heading h1 {
+                font-size: 26px;
+            }
+
+            .report-heading p {
+                font-size: 11px;
+            }
+
+            .report-badge {
+                font-size: 9px;
+                padding: 5px 9px;
+            }
+
+            .report-notice {
+                padding: 10px;
+                margin-bottom: 12px;
+            }
+
+            .report-card {
+                padding: 14px 12px;
+                border-radius: 6px;
+            }
+
+            .report-section {
+                margin-bottom: 16px;
+            }
+
+            .report-section-heading {
+                margin-bottom: 10px;
+                padding-bottom: 8px;
+            }
+
+            .report-section-icon {
+                width: 29px;
+                height: 29px;
+                font-size: 12px;
+            }
+
+            .report-section-heading h2 {
+                font-size: 12px;
+            }
+
+            .report-section-heading p {
+                font-size: 9px;
+            }
+
+            .report-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .report-field.full {
+                grid-column: auto;
+            }
+
+            .report-field input,
+            .report-field select {
+                height: 36px;
+            }
+
+            .report-field textarea {
+                height: 70px;
+                min-height: 70px;
+            }
+
+            .report-upload {
+                padding: 14px 8px;
+            }
+
+            .report-footer {
+                margin-top: 20px;
+                padding-top: 18px;
+            }
+
+            .report-footer-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 18px 12px;
+                padding-bottom: 15px;
+            }
+
+            .report-footer-brand {
+                grid-column: 1 / -1;
+            }
+
+            .report-footer-note {
+                grid-column: 1 / -1;
+            }
+
+            .report-footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                padding: 10px;
+            }
+        }
+
+        /* =====================================
+           EXTRA SMALL MOBILE
+        ===================================== */
+
+        @media (max-width: 360px) {
+
+            .report-navbar .nav-actions {
+                gap: 4px;
+            }
+
+            .report-navbar .nav-actions a {
+                padding: 0 6px;
+                font-size: 9px;
+            }
+
+            .report-heading h1 {
+                font-size: 23px;
+            }
+
+            .report-card {
+                padding: 12px 9px;
+            }
+
+            .report-footer-container {
+                grid-template-columns: 1fr;
+            }
+
+            .report-footer-brand,
+            .report-footer-note {
+                grid-column: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <header class="header">
+
+        <nav class="navbar container report-navbar">
+
+            <a href="index.html" class="logo">
+                <span class="logo-icon">
+                    <i class="fa-solid fa-shield-heart"></i>
+                </span>
+                <span>SafeHer</span>
+            </a>
+
+            <div class="nav-actions">
+
+                <a href="index.html" class="home-btn">
+                    <i class="fa-solid fa-house"></i>
+                    Home
+                </a>
+
+                <a href="login.html" class="login-btn">
+                    Login
+                </a>
+
+                <a href="register.html" class="volunteer-btn">
+                    Get Volunteer
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <!-- REPORT PAGE -->
+
+    <main class="report-page">
+
+        <div class="report-container">
+
+            <!-- HEADING -->
+
+            <div class="report-heading">
+
+                <span class="report-badge">
+                    <i class="fa-solid fa-shield-heart"></i>
+                    SAFEHER SUPPORT
+                </span>
+
+                <h1>
+                    Harassment <span>Report</span>
+                </h1>
+
+                <p>
+                    Your voice matters. Share your experience with us.
+                    Together, we can help create a safer community.
+                </p>
+
+            </div>
+
+
+            <!-- SAFETY NOTICE -->
+
+            <div class="report-notice">
+
+                <i class="fa-solid fa-circle-info"></i>
+
+                <div>
+                    <h3>Your Safety Comes First</h3>
+
+                    <p>
+                        If you are in immediate danger, contact emergency
+                        services at 999. Never put yourself at risk to
+                        collect evidence or complete this form.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <!-- REPORT FORM CARD -->
+
+            <div class="report-card">
+
+                <form id="harassmentReportForm">
+
+                    <!-- INCIDENT INFORMATION -->
+
+                    <section class="report-section">
+
+                        <div class="report-section-heading">
+
+                            <div class="report-section-icon">
+                                <i class="fa-solid fa-clipboard-list"></i>
+                            </div>
+
+                            <div>
+                                <h2>Incident Information</h2>
+                                <p>Provide basic information about the incident.</p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="report-grid">
+
+                            <div class="report-field full">
+
+                                <label for="category">
+                                    Harassment Category <span>*</span>
+                                </label>
+
+                                <select id="category" name="category" required>
+                                    <option value="">Select category</option>
+                                    <option>Verbal Harassment</option>
+                                    <option>Physical Harassment</option>
+                                    <option>Sexual Harassment</option>
+                                    <option>Online Harassment / Cyberbullying</option>
+                                    <option>Stalking</option>
+                                    <option>Workplace Harassment</option>
+                                    <option>Public Place Harassment</option>
+                                    <option>Other</option>
+                                </select>
+
+                            </div>
+
+
+                            <div class="report-field">
+
+                                <label for="incidentDate">
+                                    Incident Date <span>*</span>
+                                </label>
+
+                                <input
+                                    type="date"
+                                    id="incidentDate"
+                                    name="incident_date"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="report-field">
+
+                                <label for="incidentTime">
+                                    Incident Time
+                                </label>
+
+                                <input
+                                    type="time"
+                                    id="incidentTime"
+                                    name="incident_time"
+                                >
+
+                            </div>
+
+
+                            <div class="report-field full">
+
+                                <label for="location">
+                                    Incident Location <span>*</span>
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="location"
+                                    name="location"
+                                    placeholder="Where did the incident happen?"
+                                    required
+                                >
+
+                                <span class="report-hint">
+                                    Example: Chattogram, University area, Bus stop.
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- INCIDENT DESCRIPTION -->
+
+                    <section class="report-section">
+
+                        <div class="report-section-heading">
+
+                            <div class="report-section-icon">
+                                <i class="fa-solid fa-file-lines"></i>
+                            </div>
+
+                            <div>
+                                <h2>Incident Description</h2>
+                                <p>Explain what happened in your own words.</p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="report-field">
+
+                            <label for="description">
+                                Describe the Incident <span>*</span>
+                            </label>
+
+                            <textarea
+                                id="description"
+                                name="description"
+                                minlength="20"
+                                maxlength="3000"
+                                placeholder="Write the details of what happened..."
+                                required
+                            ></textarea>
+
+                            <span class="report-hint">
+                                Minimum 20 characters. Maximum 3000 characters.
+                            </span>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- IMAGE EVIDENCE -->
+
+                    <section class="report-section">
+
+                        <div class="report-section-heading">
+
+                            <div class="report-section-icon">
+                                <i class="fa-solid fa-images"></i>
+                            </div>
+
+                            <div>
+                                <h2>Upload Pictures</h2>
+                                <p>Add supporting pictures if available.</p>
+                            </div>
+
+                        </div>
+
+
+                        <label
+                            for="evidenceFiles"
+                            class="report-upload"
+                            id="uploadArea"
+                        >
+
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                            <h3>Upload Supporting Pictures</h3>
+
+                            <p>
+                                Drag and drop images here or browse your device.
+                            </p>
+
+                            <span>Choose Pictures</span>
+
+                        </label>
+
+
+                        <input
+                            type="file"
+                            id="evidenceFiles"
+                            accept="image/jpeg,image/png,image/webp"
+                            multiple
+                        >
+
+                        <div
+                            class="image-preview-grid"
+                            id="imagePreview"
+                        ></div>
+
+                        <p class="report-hint" style="margin-top:9px;">
+                            Maximum 5 pictures. JPG, PNG and WEBP.
+                            Each image must be under 5 MB.
+                        </p>
+
+                    </section>
+
+
+                    <!-- REPORTER INFORMATION -->
+
+                    <section class="report-section">
+
+                        <div class="report-section-heading">
+
+                            <div class="report-section-icon">
+                                <i class="fa-solid fa-user-shield"></i>
+                            </div>
+
+                            <div>
+                                <h2>Your Information</h2>
+                                <p>Optional personal information.</p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="report-grid">
+
+                            <div class="report-field">
+
+                                <label for="reporterName">Your Name</label>
+
+                                <input
+                                    type="text"
+                                    id="reporterName"
+                                    name="reporter_name"
+                                    placeholder="Enter your name"
+                                >
+
+                            </div>
+
+
+                            <div class="report-field">
+
+                                <label for="reporterEmail">Email Address</label>
+
+                                <input
+                                    type="email"
+                                    id="reporterEmail"
+                                    name="reporter_email"
+                                    placeholder="example@email.com"
+                                >
+
+                            </div>
+
+
+                            <div class="report-field full">
+
+                                <label for="reporterPhone">Phone Number</label>
+
+                                <input
+                                    type="tel"
+                                    id="reporterPhone"
+                                    name="reporter_phone"
+                                    placeholder="Enter your phone number"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <label class="anonymous-option">
+
+                            <input
+                                type="checkbox"
+                                id="anonymousReport"
+                                name="anonymous"
+                            >
+
+                            <span>
+
+                                <strong>Submit Report Anonymously</strong>
+
+                                <small>
+                                    Do not include your name or contact details
+                                    in this report. Actual anonymity requires
+                                    a properly designed secure backend.
+                                </small>
+
+                            </span>
+
+                        </label>
+
+                    </section>
+
+
+                    <!-- SUBMIT -->
+
+                    <div class="report-submit-area">
+
+                        <label class="report-consent">
+
+                            <input type="checkbox" id="consent" required>
+
+                            <span>
+                                I confirm that the information provided is
+                                accurate to the best of my knowledge.
+                            </span>
+
+                        </label>
+
+
+                        <button type="submit" class="report-submit">
+
+                            <i class="fa-solid fa-paper-plane"></i>
+                            Submit Harassment Report
+
+                        </button>
+
+
+                        <div
+                            id="reportMessage"
+                            class="report-message"
+                            role="status"
+                            aria-live="polite"
+                        ></div>
+
+
+                        <p class="report-bottom-note">
+                            <i class="fa-solid fa-lock"></i>
+                            Your safety and privacy matter.
+                        </p>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer class="report-footer">
+
+        <div class="report-footer-container">
+
+            <div class="report-footer-brand">
+
+                <a href="index.html" class="report-footer-logo">
+
+                    <span class="report-footer-icon">
+                        <i class="fa-solid fa-shield-heart"></i>
+                    </span>
+
+                    SafeHer
+
+                </a>
+
+                <p>
+                    Empowering women with safety, support and awareness.
+                    Together, we can create a safer community for everyone.
+                </p>
+
+            </div>
+
+
+            <div class="report-footer-links">
+
+                <h3>Report Support</h3>
+
+                <a href="index.html">Home</a>
+                <a href="harassment-report.html">Harassment Report</a>
+                <a href="index.html#safety">Safety Features</a>
+
+            </div>
+
+
+            <div class="report-footer-note">
+
+                <h3>Your Voice Matters</h3>
+
+                <p>
+                    Every report matters. Speak up, share your concerns
+                    and help build a safer environment.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="report-footer-bottom">
+
+            <p>
+                &copy; <span id="currentYear"></span> SafeHer.
+                All Rights Reserved.
+            </p>
+
+            <p>
+                Designed for a Safer Tomorrow
+                <i class="fa-solid fa-heart"></i>
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- EXISTING JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+
+    <!-- REPORT PAGE JAVASCRIPT -->
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const form = document.getElementById("harassmentReportForm");
+            const fileInput = document.getElementById("evidenceFiles");
+            const preview = document.getElementById("imagePreview");
+            const uploadArea = document.getElementById("uploadArea");
+            const message = document.getElementById("reportMessage");
+
+            const anonymous = document.getElementById("anonymousReport");
+
+            const nameInput = document.getElementById("reporterName");
+            const emailInput = document.getElementById("reporterEmail");
+            const phoneInput = document.getElementById("reporterPhone");
+
+            const dateInput = document.getElementById("incidentDate");
+
+            let selectedFiles = [];
+
+            /* CURRENT YEAR */
+
+            document.getElementById("currentYear").textContent =
+                new Date().getFullYear();
+
+
+            /* PREVENT FUTURE INCIDENT DATE */
+
+            const today = new Date();
+
+            dateInput.max = new Date(
+                today.getTime() - today.getTimezoneOffset() * 60000
+            ).toISOString().split("T")[0];
+
+
+            /* ANONYMOUS OPTION */
+
+            anonymous.addEventListener("change", function () {
+
+                [nameInput, emailInput, phoneInput].forEach(input => {
+
+                    input.disabled = this.checked;
+
+                    if (this.checked) {
+                        input.value = "";
+                    }
+
+                });
+
+            });
+
+
+            /* IMAGE UPLOAD */
+
+            function addFiles(files) {
+
+                Array.from(files).forEach(file => {
+
+                    if (!["image/jpeg", "image/png", "image/webp"].includes(file.type)) {
+
+                        alert("Only JPG, PNG and WEBP images are allowed.");
+                        return;
+
+                    }
+
+                    if (file.size > 5 * 1024 * 1024) {
+
+                        alert(file.name + " exceeds the 5 MB limit.");
+                        return;
+
+                    }
+
+                    if (selectedFiles.length >= 5) {
+
+                        alert("Maximum 5 pictures are allowed.");
+                        return;
+
+                    }
+
+                    const duplicate = selectedFiles.some(item =>
+
+                        item.name === file.name &&
+                        item.size === file.size &&
+                        item.lastModified === file.lastModified
+
+                    );
+
+                    if (!duplicate) {
+                        selectedFiles.push(file);
+                    }
+
+                });
+
+                renderPreview();
+
+            }
+
+
+            fileInput.addEventListener("change", function () {
+
+                addFiles(this.files);
+
+                this.value = "";
+
+            });
+
+
+            /* DRAG AND DROP */
+
+            ["dragenter", "dragover"].forEach(eventName => {
+
+                uploadArea.addEventListener(eventName, function (event) {
+
+                    event.preventDefault();
+
+                    uploadArea.classList.add("dragging");
+
+                });
+
+            });
+
+
+            ["dragleave", "drop"].forEach(eventName => {
+
+                uploadArea.addEventListener(eventName, function (event) {
+
+                    event.preventDefault();
+
+                    uploadArea.classList.remove("dragging");
+
+                });
+
+            });
+
+
+            uploadArea.addEventListener("drop", function (event) {
+
+                addFiles(event.dataTransfer.files);
+
+            });
+
+
+            /* IMAGE PREVIEW */
+
+            function renderPreview() {
+
+                preview.innerHTML = "";
+
+                selectedFiles.forEach((file, index) => {
+
+                    const item = document.createElement("div");
+
+                    item.className = "preview-item";
+
+                    const image = document.createElement("img");
+
+                    const url = URL.createObjectURL(file);
+
+                    image.src = url;
+
+                    image.alt = "Uploaded picture preview";
+
+                    image.onload = () => URL.revokeObjectURL(url);
+
+
+                    const fileName = document.createElement("p");
+
+                    fileName.textContent = file.name;
+
+
+                    const remove = document.createElement("button");
+
+                    remove.type = "button";
+
+                    remove.className = "remove-image";
+
+                    remove.innerHTML =
+                        '<i class="fa-solid fa-xmark"></i>';
+
+                    remove.setAttribute("aria-label", "Remove image");
+
+
+                    remove.addEventListener("click", function () {
+
+                        selectedFiles.splice(index, 1);
+
+                        renderPreview();
+
+                    });
+
+
+                    item.append(image, fileName, remove);
+
+                    preview.appendChild(item);
+
+                });
+
+            }
+
+
+            /* FORM SUBMISSION */
+
+            form.addEventListener("submit", function (event) {
+
+                event.preventDefault();
+
+                if (!form.checkValidity()) {
+
+                    form.reportValidity();
+
+                    return;
+
+                }
+
+                message.className = "report-message success";
+
+                message.innerHTML = `
+                    <i class="fa-solid fa-circle-check"></i>
+                    <strong>Form validation successful!</strong>
+                    <br>
+                    This is currently a frontend demonstration.
+                    Your report and pictures have not been saved or submitted.
+                `;
+
+                message.scrollIntoView({
+
+                    behavior: "smooth",
+                    block: "center"
+
+                });
+
+            });
+
+        });
+
+    </script>
+
+</body>
+</html>
